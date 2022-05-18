@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.PeerToPeer;
 using System.Net.PeerToPeer.Collaboration;
 using FileShare.Contracts.Repository;
@@ -18,16 +19,15 @@ namespace Fileshare.Logics.PnrpManager
 
         public PeerEndPointsCollection PeerEndPointCollection { get; set; }
 
-        public void ResolvPeerName()
+        public void ResolvPeerName(string peerId)
         {
             if (string.IsNullOrEmpty(username))
                 throw new ArgumentNullException(nameof(username));
 
             System.Net.PeerToPeer.PeerNameResolver resolver = new System.Net.PeerToPeer.PeerNameResolver();
-            var result = resolver.Resolve(new PeerName(username, PeerNameType.Unsecured), Cloud.AllLinkLocal);
+            var result = resolver.Resolve(new PeerName(peerId, PeerNameType.Unsecured), Cloud.AllLinkLocal);
             
-            // ???
-            if(result.Count > 0)
+            if(result.Any())
             {
                 PeerEndPointCollection = new PeerEndPointsCollection(result[0].PeerName, result[0].EndPointCollection);
             }

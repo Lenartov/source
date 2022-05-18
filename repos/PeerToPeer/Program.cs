@@ -3,9 +3,11 @@ using Fileshare.Logics.ServiceManager;
 using FileShare.Contracts.Repository;
 using FileShare.Contracts.Services;
 using FileShare.Domains;
+using PeerToPeer.PeerHostServices;
 using System;
 using System.Diagnostics;
 using System.Net;
+using System.Threading;
 
 namespace PeerToPeer
 {
@@ -24,20 +26,26 @@ namespace PeerToPeer
 
         private void Run()
         {
-            Peer<IPingService> peer = new Peer<IPingService>() { Username = Guid.NewGuid().ToString().Split('-')[4] };
-            IPeerRegistrationRepository peerRegistration = new PeerRegistrationManager();
-            IPeerNameResolverRepository peerNameResolver = new Fileshare.Logics.PnrpManager.PeerNameResolver(peer.Username);
-            IPeerConfigurationService peerConfigurationService = new PeerConfigurationService(peer);
+            Console.WriteLine("Enter name");
+            string username = Console.ReadLine();
+            Console.Clear();
 
-            peerRegistration.StartPeerRegistration(peer.Username, peerConfigurationService.Port);
-
-            Console.WriteLine($"Peer Uri: {peerRegistration.PeerUrl} \nPort: {peerConfigurationService.Port}");
-            var host = Dns.GetHostEntry(peerRegistration.PeerUrl);
-
-            foreach(var address in host.AddressList)
+            Peer<IPingService> peer = new Peer<IPingService>() 
             {
-                Console.WriteLine($"\t\t IP: {address}");
-            }
+                Id = Guid.NewGuid().ToString().Split('-')[4],
+                Username = username
+            };
+
+            IPeerConfigurationService peerConfigurationService = new PeerConfigurationService(peer);
+            IPeerRegistrationRepository peerRegistration = new PeerRegistrationManager();
+            IPeerNameResolverRepository peerNameResolver = new PeerNameResolver(peer.Id);
+
+            PeerServiceHost peerHostServices = new PeerServiceHost(peerRegistration, peerNameResolver, peerConfigurationService);
+            Thread thread = new Thread(() => 
+            {
+                peerHostServices.RunPeerServiceHost(peer);
+            }) { IsBackground = true };
+            thread.Start();
 
             Console.ReadLine();
         }

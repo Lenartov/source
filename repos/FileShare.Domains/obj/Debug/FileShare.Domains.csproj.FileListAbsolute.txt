@@ -4,3 +4,9 @@ C:\Users\User\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.csproj.
 C:\Users\User\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.dll
 C:\Users\User\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.pdb
+D:\Blockchain\source\repos\FileShare.Domains\bin\Debug\FileShare.Domains.dll
+D:\Blockchain\source\repos\FileShare.Domains\bin\Debug\FileShare.Domains.pdb
+D:\Blockchain\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.csproj.AssemblyReference.cache
+D:\Blockchain\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.csproj.CoreCompileInputs.cache
+D:\Blockchain\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.dll
+D:\Blockchain\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.pdb

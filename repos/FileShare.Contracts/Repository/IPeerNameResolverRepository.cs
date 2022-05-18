@@ -5,7 +5,7 @@ namespace FileShare.Contracts.Repository
 {
     public interface IPeerNameResolverRepository
     {
-        void ResolvPeerName();
+        void ResolvPeerName(string peerId);
         PeerEndPointsCollection PeerEndPointCollection { get; set; }
     }
 }

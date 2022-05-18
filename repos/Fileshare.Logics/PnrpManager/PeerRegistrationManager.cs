@@ -10,7 +10,7 @@ namespace Fileshare.Logics.PnrpManager
 
         public bool IsPeerRegistered => peerNameRegistration != null && peerNameRegistration.IsRegistered();
 
-        public string PeerUrl => peerNameRegistration?.PeerName.PeerHostName;
+        public string PeerUri => peerNameRegistration?.PeerName.PeerHostName;
 
         public PeerName PeerName { get; set; }
 

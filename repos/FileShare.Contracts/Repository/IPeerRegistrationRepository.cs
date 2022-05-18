@@ -7,7 +7,7 @@ namespace FileShare.Contracts.Repository
     {
         bool IsPeerRegistered { get; }
 
-        string PeerUrl { get; }
+        string PeerUri { get; }
         PeerName PeerName { get; set; }
 
         void StartPeerRegistration(string username, int port);
