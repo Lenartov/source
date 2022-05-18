@@ -90,6 +90,7 @@ namespace Fileshare.Logics.ServiceManager
             {
                 throw new ArgumentNullException(nameof(port));
             }
+            Console.WriteLine(port);
             return port;
         }
     }

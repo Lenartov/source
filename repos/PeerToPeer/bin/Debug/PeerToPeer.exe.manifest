@@ -73,7 +73,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>O4zXbbNfYttxsLWl0PIDsR+04kgVe3vVq4WUeGcA/d4=</dsig:DigestValue>
+        <dsig:DigestValue>Dx6mvSiEJte3+v66j4kxhYPZtj3W7hAHW7vwhVleCoA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -85,8 +85,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jaRGfpoP7IRl5tZi+SvxsRKO1fkefATQOVgDRmDCQlI=</dsig:DigestValue>
+        <dsig:DigestValue>avBqXBSDEgpkNPPp4g3s4Iu0AqyZUgYMFifFAKOHGYE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="PeerToPeer.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
+    </hash>
+  </file>
 </asmv1:assembly>
