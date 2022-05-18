@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>i4xIos/NlMGvgsO86/DbMQcvLsDw6bhm96I6p0HeQQw=</dsig:DigestValue>
+        <dsig:DigestValue>c7R+z4MvGaNMQMJypp2rZmDfSqsG5Ta+IvsCXshdwWY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -73,19 +73,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Dx6mvSiEJte3+v66j4kxhYPZtj3W7hAHW7vwhVleCoA=</dsig:DigestValue>
+        <dsig:DigestValue>qcn/sXHhowB2TbSrABSl/iuobxQyGfT6RMWiVb5LUBE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PeerToPeer.exe" size="7128">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PeerToPeer.exe" size="6104">
       <assemblyIdentity name="PeerToPeer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>avBqXBSDEgpkNPPp4g3s4Iu0AqyZUgYMFifFAKOHGYE=</dsig:DigestValue>
+        <dsig:DigestValue>tROkC8Vm09b/mzJVixkSwuNFxcmsKR6fbDXv21JQSZo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

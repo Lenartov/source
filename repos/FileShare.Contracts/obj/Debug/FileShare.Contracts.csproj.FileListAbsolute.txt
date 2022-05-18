@@ -7,3 +7,12 @@ C:\Users\User\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.csp
 C:\Users\User\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.csproj.CopyComplete
 C:\Users\User\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.dll
 C:\Users\User\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.pdb
+D:\Blockchain\source\repos\FileShare.Contracts\bin\Debug\FileShare.Contracts.dll
+D:\Blockchain\source\repos\FileShare.Contracts\bin\Debug\FileShare.Contracts.pdb
+D:\Blockchain\source\repos\FileShare.Contracts\bin\Debug\FileShare.Domains.dll
+D:\Blockchain\source\repos\FileShare.Contracts\bin\Debug\FileShare.Domains.pdb
+D:\Blockchain\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.csproj.AssemblyReference.cache
+D:\Blockchain\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.csproj.CoreCompileInputs.cache
+D:\Blockchain\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.csproj.CopyComplete
+D:\Blockchain\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.dll
+D:\Blockchain\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.pdb
