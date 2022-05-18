@@ -1,9 +1,0 @@
-C:\Users\User\source\repos\FileShare.Contracts\bin\Debug\FileShare.Contracts.dll
-C:\Users\User\source\repos\FileShare.Contracts\bin\Debug\FileShare.Contracts.pdb
-C:\Users\User\source\repos\FileShare.Contracts\bin\Debug\FileShare.Domains.dll
-C:\Users\User\source\repos\FileShare.Contracts\bin\Debug\FileShare.Domains.pdb
-C:\Users\User\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.csproj.AssemblyReference.cache
-C:\Users\User\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.csproj.CopyComplete
-C:\Users\User\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.dll
-C:\Users\User\source\repos\FileShare.Contracts\obj\Debug\FileShare.Contracts.pdb
