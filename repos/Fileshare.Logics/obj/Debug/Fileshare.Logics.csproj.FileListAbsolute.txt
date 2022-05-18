@@ -1,0 +1,11 @@
+C:\Users\User\source\repos\Fileshare.Logics\bin\Debug\Fileshare.Logics.dll
+C:\Users\User\source\repos\Fileshare.Logics\bin\Debug\Fileshare.Logics.pdb
+C:\Users\User\source\repos\Fileshare.Logics\bin\Debug\FileShare.Contracts.dll
+C:\Users\User\source\repos\Fileshare.Logics\bin\Debug\FileShare.Domains.dll
+C:\Users\User\source\repos\Fileshare.Logics\bin\Debug\FileShare.Contracts.pdb
+C:\Users\User\source\repos\Fileshare.Logics\bin\Debug\FileShare.Domains.pdb
+C:\Users\User\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.csproj.CopyComplete
+C:\Users\User\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.dll
+C:\Users\User\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.pdb

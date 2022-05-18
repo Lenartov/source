@@ -1,0 +1,6 @@
+C:\Users\User\source\repos\FileShare.Domains\bin\Debug\FileShare.Domains.dll
+C:\Users\User\source\repos\FileShare.Domains\bin\Debug\FileShare.Domains.pdb
+C:\Users\User\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.dll
+C:\Users\User\source\repos\FileShare.Domains\obj\Debug\FileShare.Domains.pdb
