@@ -1,4 +1,3 @@
-C:\Users\User\source\repos\PeerToPeer\bin\Debug\PeerToPeer.exe.config
 C:\Users\User\source\repos\PeerToPeer\bin\Debug\PeerToPeer.exe
 C:\Users\User\source\repos\PeerToPeer\bin\Debug\PeerToPeer.pdb
 C:\Users\User\source\repos\PeerToPeer\bin\Debug\FileShare.Contracts.dll
