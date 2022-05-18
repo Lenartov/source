@@ -5,9 +5,7 @@ using FileShare.Contracts.Services;
 using FileShare.Domains;
 using System;
 using System.Diagnostics;
-using System.Net.PeerToPeer;
 using System.Net;
-using System.ServiceModel;
 
 namespace PeerToPeer
 {
@@ -33,7 +31,14 @@ namespace PeerToPeer
 
             peerRegistration.StartPeerRegistration(peer.Username, peerConfigurationService.Port);
 
-            Console.WriteLine($"Peer Uri: {peerRegistration.PeerUrl} \n Port: {peerConfigurationService.Port}");
+            Console.WriteLine($"Peer Uri: {peerRegistration.PeerUrl} \nPort: {peerConfigurationService.Port}");
+            var host = Dns.GetHostEntry(peerRegistration.PeerUrl);
+
+            foreach(var address in host.AddressList)
+            {
+                Console.WriteLine($"\t\t IP: {address}");
+            }
+
             Console.ReadLine();
         }
     }
