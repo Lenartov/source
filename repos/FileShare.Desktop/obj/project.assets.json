@@ -1,11 +1,66 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "FileShare.Contracts/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "FileShare.Domains": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FileShare.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FileShare.Contracts.dll": {}
+        }
+      },
+      "FileShare.Domains/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/FileShare.Domains.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FileShare.Domains.dll": {}
+        }
+      },
+      "Fileshare.Logics/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "FileShare.Contracts": "1.0.0",
+          "FileShare.Domains": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Fileshare.Logics.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Fileshare.Logics.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "FileShare.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../FileShare.Contracts/FileShare.Contracts.csproj",
+      "msbuildProject": "../FileShare.Contracts/FileShare.Contracts.csproj"
+    },
+    "FileShare.Domains/1.0.0": {
+      "type": "project",
+      "path": "../FileShare.Domains/FileShare.Domains.csproj",
+      "msbuildProject": "../FileShare.Domains/FileShare.Domains.csproj"
+    },
+    "Fileshare.Logics/1.0.0": {
+      "type": "project",
+      "path": "../Fileshare.Logics/Fileshare.Logics.csproj",
+      "msbuildProject": "../Fileshare.Logics/Fileshare.Logics.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "FileShare.Contracts >= 1.0.0",
+      "FileShare.Domains >= 1.0.0",
+      "Fileshare.Logics >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\User\\.nuget\\packages\\": {},
@@ -38,7 +93,17 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj": {
+              "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj"
+            },
+            "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
+              "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
+            },
+            "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj": {
+              "projectPath": "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

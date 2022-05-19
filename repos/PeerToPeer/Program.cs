@@ -36,7 +36,7 @@ namespace PeerToPeer
                 Username = username
             };
 
-            IPeerConfigurationService peerConfigurationService = new PeerConfigurationService(peer);
+            IPeerConfigurationService<PingService> peerConfigurationService = new PeerConfigurationService(peer);
             IPeerRegistrationRepository peerRegistration = new PeerRegistrationManager();
             IPeerNameResolverRepository peerNameResolver = new PeerNameResolver(peer.Id);
 

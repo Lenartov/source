@@ -1,0 +1,9 @@
+D:\Blockchain\source\repos\FileShare.SampleData\bin\Debug\FileShare.SampleData.dll
+D:\Blockchain\source\repos\FileShare.SampleData\bin\Debug\FileShare.SampleData.pdb
+D:\Blockchain\source\repos\FileShare.SampleData\bin\Debug\FileShare.Domains.dll
+D:\Blockchain\source\repos\FileShare.SampleData\bin\Debug\FileShare.Domains.pdb
+D:\Blockchain\source\repos\FileShare.SampleData\obj\Debug\FileShare.SampleData.csproj.AssemblyReference.cache
+D:\Blockchain\source\repos\FileShare.SampleData\obj\Debug\FileShare.SampleData.csproj.CoreCompileInputs.cache
+D:\Blockchain\source\repos\FileShare.SampleData\obj\Debug\FileShare.SampleData.csproj.CopyComplete
+D:\Blockchain\source\repos\FileShare.SampleData\obj\Debug\FileShare.SampleData.dll
+D:\Blockchain\source\repos\FileShare.SampleData\obj\Debug\FileShare.SampleData.pdb

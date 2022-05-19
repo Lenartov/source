@@ -27,10 +27,10 @@ namespace Fileshare.Logics.PnrpManager
             System.Net.PeerToPeer.PeerNameResolver resolver = new System.Net.PeerToPeer.PeerNameResolver();
             var result = resolver.Resolve(new PeerName(peerId, PeerNameType.Unsecured), Cloud.AllLinkLocal);
             
-            if(result.Any())
+           /* if(result.Any())
             {
                 PeerEndPointCollection = new PeerEndPointsCollection(result[0].PeerName, result[0].EndPointCollection);
-            }
+            }*/
         }
     }
 }

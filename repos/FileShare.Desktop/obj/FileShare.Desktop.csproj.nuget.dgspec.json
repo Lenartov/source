@@ -4,6 +4,25 @@
     "D:\\Blockchain\\source\\repos\\FileShare.Desktop\\FileShare.Desktop.csproj": {}
   },
   "projects": {
+    "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj",
+        "projectName": "FileShare.Contracts",
+        "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "D:\\Blockchain\\source\\repos\\FileShare.Desktop\\FileShare.Desktop.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -31,7 +50,17 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj"
+              },
+              "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
+              },
+              "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -63,6 +92,38 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj",
+        "projectName": "FileShare.Domains",
+        "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj",
+        "projectName": "Fileshare.Logics",
+        "projectPath": "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj"
+              },
+              "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
       }
     }
   }

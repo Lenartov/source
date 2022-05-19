@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 D:\Blockchain\source\repos\FileShare.Desktop\App.xaml
-11407045341
+51917859270
 
-51335113699
-192-1533232326
-MainWindow.xaml;
+1390518933
+196-412043661
+MainWindow.xaml;Views\FileDetailView.xaml;Views\FileResultView.xaml;Views\LoginView.xaml;Views\Main.xaml;
 
-False
+True
 

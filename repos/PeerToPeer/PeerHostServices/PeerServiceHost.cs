@@ -1,4 +1,5 @@
-﻿using FileShare.Contracts.Repository;
+﻿using Fileshare.Logics.ServiceManager;
+using FileShare.Contracts.Repository;
 using FileShare.Contracts.Services;
 using FileShare.Domains;
 using System;
@@ -16,9 +17,9 @@ namespace PeerToPeer.PeerHostServices
 
         public IPeerRegistrationRepository RegistrPeer { get; set; }
         public IPeerNameResolverRepository ResolverPeer { get; set; }
-        public IPeerConfigurationService ConfigurPeer { get; set; }
+        public IPeerConfigurationService<PingService> ConfigurPeer { get; set; }
 
-        public PeerServiceHost(IPeerRegistrationRepository peerRegistration, IPeerNameResolverRepository peerNameResolver, IPeerConfigurationService peerConfiguration)
+        public PeerServiceHost(IPeerRegistrationRepository peerRegistration, IPeerNameResolverRepository peerNameResolver, IPeerConfigurationService<PingService> peerConfiguration)
         {
             RegistrPeer = peerRegistration;
             ResolverPeer = peerNameResolver;
@@ -41,18 +42,35 @@ namespace PeerToPeer.PeerHostServices
             if(ResolverPeer != null)
             {
                 Console.WriteLine($"Resolving peer {peer.Username}");
+                
                 ResolverPeer.ResolvPeerName(peer.Id);
                 var result = ResolverPeer.PeerEndPointCollection;
 
                 Console.WriteLine($"\t\t EndPoints for {RegistrPeer.PeerUri}");
-                if(result != null)
+                
+                if(ConfigurPeer.StartPeerService())
                 {
-                    ResolverPeer.PeerEndPointCollection.PeerEndPoints.ToList().ForEach(p => Console.WriteLine($"IP: {p.Address}"));
+                    Console.WriteLine("Peer services started");
+                    peer.Channel.Ping(new HostInfo()
+                    {
+                        Id = peer.Id,
+                        Port = ConfigurPeer.Port,
+                        Uri = RegistrPeer.PeerUri
+                    });
+
+                    if(ConfigurPeer.PingService != null)
+                    {
+                        ConfigurPeer.PingService.PeerEndPointInformation += PingServiceOnPeerEndPointInformation;
+                    }
                 }
-                else
-                {
-                    Console.WriteLine($"\t\t No record for {peer.Username}");
-                }
+            }
+        }
+
+        public void PingServiceOnPeerEndPointInformation(HostInfo hostInfo)
+        {
+            if(hostInfo != null)
+            {
+                Console.WriteLine($"New peer EndPoint ******** {hostInfo.Uri}");
             }
         }
     }

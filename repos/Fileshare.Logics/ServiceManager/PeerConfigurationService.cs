@@ -9,7 +9,7 @@ using System.ServiceModel.Description;
 
 namespace Fileshare.Logics.ServiceManager
 {
-    public class PeerConfigurationService : IPeerConfigurationService
+    public class PeerConfigurationService : IPeerConfigurationService<PingService>
     {
         private ICommunicationObject Communication;
         private DuplexChannelFactory<IPingService> factory;
@@ -18,11 +18,13 @@ namespace Fileshare.Logics.ServiceManager
         public PeerConfigurationService(Peer<IPingService> peer)
         {
             Peer = peer;
+            PingService = new PingService();
         }
 
         public int Port => FindFreePort();
 
         public Peer<IPingService> Peer { get; private set; }
+        public PingService PingService { get; set; }
 
         public bool StartPeerService()
         {
@@ -30,8 +32,8 @@ namespace Fileshare.Logics.ServiceManager
             NetPeerTcpBinding binding = new NetPeerTcpBinding() { Security = { Mode = SecurityMode.None } };
 #pragma warning restore 618
             ServiceEndpoint endPoint = new ServiceEndpoint(ContractDescription.GetContract(typeof(IPingService)), binding, new EndpointAddress("net.p2p://FileShare"));
-            
-            Peer.Host = new PingService();
+
+            Peer.Host = PingService;
             factory = new DuplexChannelFactory<IPingService>(new InstanceContext(Peer.Host), endPoint);
             Peer.Channel = factory.CreateChannel();
 

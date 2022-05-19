@@ -42,50 +42,50 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FileShare.Contracts.dll" size="5120">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FileShare.Contracts.dll" size="6144">
       <assemblyIdentity name="FileShare.Contracts" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xoqCQYxqq1rbSqbXJlUQ5XJKkih7eBPiPQ7BKP7yZH8=</dsig:DigestValue>
+        <dsig:DigestValue>VOWMV7o35dqrPE0hA8dCOwDDUJcan4PwGuUAyLJUBJA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FileShare.Domains.dll" size="5632">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FileShare.Domains.dll" size="9216">
       <assemblyIdentity name="FileShare.Domains" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>pwayBqHL7OpLmuh5iserDkpARiLjg/vXYuh7FByVK3Q=</dsig:DigestValue>
+        <dsig:DigestValue>ujT28ruzbLlkssx1uqS4cIiTAfI6nKT+SHz9sLrR5Ew=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Fileshare.Logics.dll" size="8704">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Fileshare.Logics.dll" size="13824">
       <assemblyIdentity name="Fileshare.Logics" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>t1JEw+2Tj5dR5dh5Jki0Odo7cIHSXDoKEc9TK4ruQSE=</dsig:DigestValue>
+        <dsig:DigestValue>f/xI3yfN4i2I0d9IKOkfQHRpu7pB4uz4jFGxAnA7ZZ0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PeerToPeer.exe" size="9176">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PeerToPeer.exe" size="8664">
       <assemblyIdentity name="PeerToPeer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>IJ6s1ps9NAFJwYEBwV0sDNgx2rucKUZcvvU0VDlxvMY=</dsig:DigestValue>
+        <dsig:DigestValue>zkOVSdFT20oWfzSjvJLydo1oXkyVsUt22z8vMYrbG1A=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
