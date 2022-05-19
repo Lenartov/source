@@ -10,65 +10,52 @@ namespace FileShare.SampleData
 {
     public class FileSample
     {
-        private static ObservableCollection<File> availableFiles = new ObservableCollection<File>();
-        private static ObservableCollection<FileMetaData> metaDatas = new ObservableCollection<FileMetaData>();
+        private ObservableCollection<File> availableFiles = new ObservableCollection<File>();
+        private ObservableCollection<FileMetaData> metaDatas = new ObservableCollection<FileMetaData>();
 
-        public static ObservableCollection<File> GetAvailableFiles()
+        public ObservableCollection<File> GetAvailableFiles()
         {
             if(!availableFiles.Any())
             {
-                availableFiles.Add(new Task<File>(() =>
+                availableFiles.Add(new File
                 {
-                    byte[] bytes = new byte[1000];
-                    File file = new File()
-                    {
                         Id = Guid.NewGuid().ToString().Split('-')[4],
                         Name = "Some File",
-                        Content = bytes,
-                        Length = bytes.Length,
+                        Content = new byte[23234],
+                        Length = 23234,
                         Type = "video/mp4"
-                    };
-                    metaDatas.Add(file.GetFileMetaData());
-                    return file;
-                }).Result);
-                availableFiles.Add(new Task<File>(() =>
+                });
+
+                availableFiles.Add(new File
                 {
-                    byte[] bytes = new byte[50];
-                    File file = new File()
-                    {
-                        Id = Guid.NewGuid().ToString().Split('-')[4],
-                        Name = "Some File2",
-                        Content = bytes,
-                        Length = bytes.Length,
-                        Type = "audio/mp3"
-                    };
-                    metaDatas.Add(file.GetFileMetaData());
-                    return file;
-                }).Result);
-                availableFiles.Add(new Task<File>(() =>
+                    Id = Guid.NewGuid().ToString().Split('-')[4],
+                    Name = "Some File2",
+                    Content = new byte[345],
+                    Length = 345,
+                    Type = "video/mp4"
+                });
+
+                availableFiles.Add(new File
                 {
-                    byte[] bytes = new byte[2000];
-                    File file = new File()
-                    {
-                        Id = Guid.NewGuid().ToString().Split('-')[4],
-                        Name = "Some File3",
-                        Content = bytes,
-                        Length = bytes.Length,
-                        Type = "hyi/mp5"
-                    };
-                    metaDatas.Add(file.GetFileMetaData());
-                    return file;
-                }).Result);
+                    Id = Guid.NewGuid().ToString().Split('-')[4],
+                    Name = "Some File3",
+                    Content = new byte[200],
+                    Length = 200,
+                    Type = "video/mp4"
+                });
             }
 
             return availableFiles;
         }
 
-        public static ObservableCollection<FileMetaData> GetFileMetaDatas()
+        public ObservableCollection<FileMetaData> GetFileMetaDatas()
         {
             if(!metaDatas.Any())
             {
-                GetAvailableFiles();
+                GetAvailableFiles().ToList().ForEach(p =>
+                {
+                    metaDatas.Add(new FileMetaData(p.Id, p.Name, p.Length));
+                });
             }
 
             return metaDatas;

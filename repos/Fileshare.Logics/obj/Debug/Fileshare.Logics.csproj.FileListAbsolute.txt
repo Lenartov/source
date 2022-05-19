@@ -20,3 +20,5 @@ D:\Blockchain\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.csproj.Co
 D:\Blockchain\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.csproj.CopyComplete
 D:\Blockchain\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.dll
 D:\Blockchain\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.pdb
+D:\Blockchain\source\repos\Fileshare.Logics\bin\Debug\FileShare.SampleData.dll
+D:\Blockchain\source\repos\Fileshare.Logics\bin\Debug\FileShare.SampleData.pdb

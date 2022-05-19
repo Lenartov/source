@@ -1,6 +1,7 @@
 ﻿using FileShare.Contracts.Services;
 using FileShare.Domains;
 using FileShare.Domains.FIleSearch;
+using FileShare.SampleData;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,14 +20,20 @@ namespace Fileshare.Logics.ServiceManager
         public event OnPeerInfo PeerEndPointInformation;
         public event FileSearchResult FileSearchResult;
 
+        private Random rnd;
+        private int count = new FileSample().GetFileMetaDatas().Count;
+
         public HostInfo FileServiceHost { get; set; }
-        public ObservableCollection<FileMetaData> AvailableFileMetaData { get; set; }
+        public IList<FileMetaData> AvailableFileMetaData { get; set; }
         public ObservableCollection<HostInfo> ClientHostDetails { get; set; }
 
 
         public PingService()
         {
+            rnd = new Random();
+
             ClientHostDetails = new ObservableCollection<HostInfo>();
+            AvailableFileMetaData = new FileSample().GetFileMetaDatas().Take(rnd.Next(1, count)).ToList();
         }
 
         public PingService(HostInfo info)
@@ -41,31 +48,33 @@ namespace Fileshare.Logics.ServiceManager
             IPHostEntry host = Dns.GetHostEntry(hostInfo.Uri);
 
             IPEndPointCollection iPEndPoints = new IPEndPointCollection();
-            host.AddressList.ToList().ForEach(p => { iPEndPoints.Add(new IPEndPoint(p, hostInfo.Port)); });
+            host.AddressList.ToList().ForEach(p => 
+            { iPEndPoints.Add(new IPEndPoint(p, hostInfo.Port)); });
 
-            PeerEndPointInfo peerInfo = new PeerEndPointInfo { LastUpdate = DateTime.Now, PeerUri = hostInfo.Uri, PeerIpCollection = iPEndPoints };
-            ClientHostDetails.Add(hostInfo);
+            PeerEndPointInfo peerInfo = new PeerEndPointInfo 
+            { 
+                LastUpdate = DateTime.Now,
+                PeerUri = hostInfo.Uri,
+                PeerIpCollection = iPEndPoints 
+            };
+            //ClientHostDetails.Add(hostInfo);
             PeerEndPointInformation?.Invoke(hostInfo);
         }
 
         public void SearchFiles(string searchTerm, string peerId)
         {
-            if(ClientHostDetails.Any())
+            ObservableCollection<FileMetaData> result =(ObservableCollection<FileMetaData>) (from file in AvailableFileMetaData
+                          where searchTerm == file.Name
+                            || file.Name.Contains(searchTerm)
+                          select file);
+
+            if(result.Any())
             {
-                HostInfo info = ClientHostDetails.First(p => p.Id == peerId);
-                ObservableCollection<FileMetaData> result = (ObservableCollection<FileMetaData>) from fileMeta in AvailableFileMetaData where searchTerm == fileMeta.Name select fileMeta;
-                
-                if(info != null)
-                {
-                    if(result.Any())
-                    {
-                        FileSerchResultModel fileSerch = new FileSerchResultModel()
-                        {
-                            ServiceHost = FileServiceHost,
-                            Files = result
-                        };
-                    }
-                }
+                FileSerchResultModel serchResultModel = new FileSerchResultModel {
+                    PeerId = peerId,
+                    Files = result
+                };
+                FileSearchResult?.Invoke(serchResultModel);
             }
         }
     }

@@ -117,6 +117,28 @@
               },
               "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
                 "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
+              },
+              "D:\\Blockchain\\source\\repos\\FileShare.SampleData\\FileShare.SampleData.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.SampleData\\FileShare.SampleData.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\Blockchain\\source\\repos\\FileShare.SampleData\\FileShare.SampleData.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Blockchain\\source\\repos\\FileShare.SampleData\\FileShare.SampleData.csproj",
+        "projectName": "FileShare.SampleData",
+        "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.SampleData\\FileShare.SampleData.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
               }
             }
           }

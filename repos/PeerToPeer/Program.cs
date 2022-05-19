@@ -16,7 +16,7 @@ namespace PeerToPeer
         static void Main(string[] args)
         {
             
-            if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length <= 1)
+            if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length <= 2)
             {
                 Process.Start("PeerToPeer.exe");
             }
@@ -28,7 +28,7 @@ namespace PeerToPeer
         {
             Console.WriteLine("Enter name");
             string username = Console.ReadLine();
-            Console.Clear();
+            //Console.Clear();
 
             Peer<IPingService> peer = new Peer<IPingService>() 
             {

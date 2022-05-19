@@ -10,14 +10,15 @@ using System.Threading.Tasks;
 
 namespace Fileshare.Logics.FileShareManager
 {
-    public delegate void CurrentHostInfo(HostInfo info);
+    public delegate void CurrentHostInfo(HostInfo info, bool isCallback = false);
+    public delegate void CurrentClientInfo(string peerId, IFileShareServiceCallback callback);
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public class FileShareManager : IFileShareService
     {
         private Dictionary<string, HostInfo> currentHost = new Dictionary<string, HostInfo>();
 
-        public event CurrentHostInfo CurrentHostUpdate;
+        public event CurrentHostInfo CurrentHostUpDate;
 
         public void ForwardResult(FileSerchResultModel resultModel)
         {
@@ -34,17 +35,28 @@ namespace Fileshare.Logics.FileShareManager
             throw new NotImplementedException();
         }
 
-        public void PingHostService(HostInfo info)
+        public void PingHostService(HostInfo info, bool isCallback)
         {
-            Console.WriteLine($"Peer: {info.Id}   Server: {info.Uri}:{info.Port}\n");
+           // Console.WriteLine($"Peer: {info.Id}");
+           // Console.WriteLine($"Server Info {info.Uri} {info.Port}");
+
             IFileShareServiceCallback callback = OperationContext.Current.GetCallbackChannel<IFileShareServiceCallback>();
             
             if(callback != null)
             {
-                if(callback.isConnected($"Message from server at: {DateTime.UtcNow:D}"))
+                if(isCallback)
+                {
+                    if (callback.isConnected($"Ping back direct connection: {DateTime.UtcNow:T}")) ;
+                    {
+                        info.CallBack = callback;
+                        CurrentHostUpDate?.Invoke(info, true);
+                    }
+                }
+                else if(callback.isConnected($"Direct peer conection established from server at: {DateTime.UtcNow:D}"))
                 {
                     currentHost.Add(info.Id, info);
-                    CurrentHostUpdate?.Invoke(info);
+                    info.CallBack = callback;
+                    CurrentHostUpDate?.Invoke(info);
                 }
             }
         }

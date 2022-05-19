@@ -6,10 +6,10 @@ namespace FileShare.Domains
     public class FileMetaData 
     {
         [DataMember]
-        public string Id { get; }
+        public string Id { get; set; }
 
         [DataMember]
-        public string Name { get; }
+        public string Name { get; set; }
 
         [DataMember]
         public int Length { get; }

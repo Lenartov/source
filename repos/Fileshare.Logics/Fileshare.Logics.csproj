@@ -60,6 +60,10 @@
       <Project>{9AC06D21-6CEE-4458-A141-D5B3E546EE96}</Project>
       <Name>FileShare.Domains</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileShare.SampleData\FileShare.SampleData.csproj">
+      <Project>{5D18BD45-2A04-4887-A80D-C46A804F02E0}</Project>
+      <Name>FileShare.SampleData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

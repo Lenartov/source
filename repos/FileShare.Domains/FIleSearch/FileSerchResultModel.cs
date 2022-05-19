@@ -12,7 +12,7 @@ namespace FileShare.Domains.FIleSearch
     public class FileSerchResultModel
     {
         [DataMember]
-        public HostInfo ServiceHost { get; set; }
+        public string PeerId { get; set; }
         
         [DataMember]
         public ObservableCollection<FileMetaData> Files { get; set; }

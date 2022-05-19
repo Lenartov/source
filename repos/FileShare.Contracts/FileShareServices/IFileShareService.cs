@@ -22,6 +22,6 @@ namespace FileShare.Contracts.FileShareServices
         void ForwardResult(FileSerchResultModel resultModel);
 
         [OperationContract(IsOneWay = true)]
-        void PingHostService(HostInfo info);
+        void PingHostService(HostInfo info, bool isCallback = false);
     }
 }

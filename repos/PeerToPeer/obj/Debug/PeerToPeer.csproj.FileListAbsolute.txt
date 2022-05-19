@@ -34,3 +34,5 @@ D:\Blockchain\source\repos\PeerToPeer\obj\Debug\PeerToPeer.application
 D:\Blockchain\source\repos\PeerToPeer\obj\Debug\PeerToPeer.csproj.CopyComplete
 D:\Blockchain\source\repos\PeerToPeer\obj\Debug\PeerToPeer.exe
 D:\Blockchain\source\repos\PeerToPeer\obj\Debug\PeerToPeer.pdb
+D:\Blockchain\source\repos\PeerToPeer\bin\Debug\FileShare.SampleData.dll
+D:\Blockchain\source\repos\PeerToPeer\bin\Debug\FileShare.SampleData.pdb

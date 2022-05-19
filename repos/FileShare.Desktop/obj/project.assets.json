@@ -27,13 +27,26 @@
         "type": "project",
         "dependencies": {
           "FileShare.Contracts": "1.0.0",
-          "FileShare.Domains": "1.0.0"
+          "FileShare.Domains": "1.0.0",
+          "FileShare.SampleData": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Fileshare.Logics.dll": {}
         },
         "runtime": {
           "bin/placeholder/Fileshare.Logics.dll": {}
+        }
+      },
+      "FileShare.SampleData/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "FileShare.Domains": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FileShare.SampleData.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FileShare.SampleData.dll": {}
         }
       }
     }
@@ -53,6 +66,11 @@
       "type": "project",
       "path": "../Fileshare.Logics/Fileshare.Logics.csproj",
       "msbuildProject": "../Fileshare.Logics/Fileshare.Logics.csproj"
+    },
+    "FileShare.SampleData/1.0.0": {
+      "type": "project",
+      "path": "../FileShare.SampleData/FileShare.SampleData.csproj",
+      "msbuildProject": "../FileShare.SampleData/FileShare.SampleData.csproj"
     }
   },
   "projectFileDependencyGroups": {
