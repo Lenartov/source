@@ -6,48 +6,61 @@ using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FileShare;
 
 namespace Blockchain
 {
+    public delegate void ConnectDelegate(String arr, String arr2);
     public partial class Form1 : Form
     {
-        //private Servise Roma;
+        public ConnectDelegate peerConnectDel;
 
-        private Chain chain;
-        private User user;
+        public PeerServiceHost peerService;
+        public string username;
+
+        private Login login;
+        private bool isPeerConected = false;
 
         public Form1()
         {
-            //Roma = new Servise();
-//Roma.Abort();
-            //Database.SetInitializer<BlockchainContext>(null);
-            //Database.SetInitializer<UserContext>(null);
-
-            user = new User("Penis", "qweqweqwe", UserRole.User);
-            chain = new Chain();
+            peerConnectDel += (port, uri) =>
+            {
+                PortView.Text = port;
+                UriView.Text = uri;
+                isPeerConected = true;
+            };
 
             InitializeComponent();
+
+            login = new Login();
+            login.ShowDialog();
+
+            UsernameView.Text = login.Username;
+
+            Thread PeeringThread = new Thread(new ThreadStart(ThreadConnect));
+            PeeringThread.Start();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
+            if (isPeerConected)
+            {
 
-            Block block = new Block(user, new Data(textBox1.Text, DataType.STR), chain.LastBlock);
-
-            chain.AddBlock(block);
-            button1.Text = chain.Blocks.Count().ToString();
-            listBox1.Items.AddRange(chain.Blocks.ToArray());
-
-            textBox1.Clear();
-            textBox1.Select();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            listBox1.Items.AddRange(chain.Blocks.ToArray());
+
+        }
+
+        private void ThreadConnect()
+        {
+            ThreadPeerConnection myThreadClassObject = new ThreadPeerConnection(this);
+            myThreadClassObject.Run();
         }
     }
 }

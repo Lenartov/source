@@ -28,7 +28,7 @@ namespace FileShare
             port = ConfigurPeer.Port;
         }
 
-        public void RunPeerServiceHost(Peer<IPingService> peer)
+        public void RunPeerServiceHost(Peer<IPingService> peer, Action onSuccess)
         {
             if (peer == null)
                 throw new ArgumentNullException(nameof(peer));
@@ -64,10 +64,12 @@ namespace FileShare
                         Uri = RegistrPeer.PeerUri
                     });
 
+                    //////???????????????///////
                     if (ConfigurPeer.PingService != null)
                     {
                         ConfigurPeer.PingService.OnPeerEndPointInfoShow += PingServiceOnPeerEndPointInformation;
                     }
+                    onSuccess?.Invoke();
                 }
             }
         }

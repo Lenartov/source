@@ -28,3 +28,6 @@ D:\Blockchain\source\repos\Blockchain\obj\Debug\Blockchain.csproj.CoreCompileInp
 D:\Blockchain\source\repos\Blockchain\obj\Debug\Blockchain.csproj.CopyComplete
 D:\Blockchain\source\repos\Blockchain\obj\Debug\Blockchain.exe
 D:\Blockchain\source\repos\Blockchain\obj\Debug\Blockchain.pdb
+D:\Blockchain\source\repos\Blockchain\bin\Debug\Fileshare.Logics.dll
+D:\Blockchain\source\repos\Blockchain\bin\Debug\Fileshare.Logics.pdb
+D:\Blockchain\source\repos\Blockchain\obj\Debug\Blockchain.Login.resources

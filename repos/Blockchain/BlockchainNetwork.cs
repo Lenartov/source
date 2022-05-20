@@ -22,7 +22,7 @@ namespace Blockchain
 
         private static string SendRequest(string ip, string method, string data)
         {
-            using (var client = new HttpClient())
+         /*   using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -39,7 +39,7 @@ namespace Blockchain
                     return result;
                 }
             }
-
+         */
             return null;
         }
 

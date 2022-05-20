@@ -32,11 +32,14 @@ namespace Blockchain
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.UsernameView = new System.Windows.Forms.TextBox();
+            this.UriView = new System.Windows.Forms.TextBox();
+            this.PortView = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(602, 12);
+            this.button1.Location = new System.Drawing.Point(602, 248);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(186, 20);
             this.button1.TabIndex = 0;
@@ -46,7 +49,7 @@ namespace Blockchain
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
+            this.textBox1.Location = new System.Drawing.Point(12, 249);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(584, 20);
             this.textBox1.TabIndex = 1;
@@ -54,16 +57,43 @@ namespace Blockchain
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 38);
+            this.listBox1.Location = new System.Drawing.Point(12, 285);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(776, 407);
+            this.listBox1.Size = new System.Drawing.Size(776, 160);
             this.listBox1.TabIndex = 2;
+            // 
+            // UsernameView
+            // 
+            this.UsernameView.Enabled = false;
+            this.UsernameView.Location = new System.Drawing.Point(12, 12);
+            this.UsernameView.Name = "UsernameView";
+            this.UsernameView.Size = new System.Drawing.Size(100, 20);
+            this.UsernameView.TabIndex = 3;
+            // 
+            // UriView
+            // 
+            this.UriView.Enabled = false;
+            this.UriView.Location = new System.Drawing.Point(144, 12);
+            this.UriView.Name = "UriView";
+            this.UriView.Size = new System.Drawing.Size(211, 20);
+            this.UriView.TabIndex = 4;
+            // 
+            // Port
+            // 
+            this.PortView.Enabled = false;
+            this.PortView.Location = new System.Drawing.Point(361, 12);
+            this.PortView.Name = "Port";
+            this.PortView.Size = new System.Drawing.Size(211, 20);
+            this.PortView.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.PortView);
+            this.Controls.Add(this.UriView);
+            this.Controls.Add(this.UsernameView);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
@@ -80,6 +110,9 @@ namespace Blockchain
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.TextBox UsernameView;
+        public System.Windows.Forms.TextBox UriView;
+        public System.Windows.Forms.TextBox PortView;
     }
 }
 
