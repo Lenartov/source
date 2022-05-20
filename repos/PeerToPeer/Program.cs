@@ -1,53 +1,52 @@
-﻿using Fileshare.Logics.PnrpManager;
-using Fileshare.Logics.ServiceManager;
-using FileShare.Contracts.Repository;
-using FileShare.Contracts.Services;
-using FileShare.Domains;
-using PeerToPeer.PeerHostServices;
+﻿using FileShare;
 using System;
 using System.Diagnostics;
 using System.Net;
 using System.Threading;
+using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Description;
 
 namespace PeerToPeer
 {
-    public class Program
-    {
-        static void Main(string[] args)
-        {
-            
-            if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length <= 2)
-            {
-                Process.Start("PeerToPeer.exe");
-            }
-            
-            new Program().Run();
-        }
+     public class Program
+     {
+         static void Main(string[] args)
+         {
 
-        private void Run()
-        {
-            Console.WriteLine("Enter name");
-            string username = Console.ReadLine();
-            //Console.Clear();
+             if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length <= 1)
+             {
+                 Process.Start("PeerToPeer.exe");
+             }
 
-            Peer<IPingService> peer = new Peer<IPingService>() 
-            {
-                Id = Guid.NewGuid().ToString().Split('-')[4],
-                Username = username
-            };
+             new Program().Run();
+         }
 
-            IPeerConfigurationService<PingService> peerConfigurationService = new PeerConfigurationService(peer);
-            IPeerRegistrationRepository peerRegistration = new PeerRegistrationManager();
-            IPeerNameResolverRepository peerNameResolver = new PeerNameResolver(peer.Id);
+         private void Run()
+         {
+             Console.WriteLine("Enter name");
+             string username = Console.ReadLine();
+             Console.Clear();
 
-            PeerServiceHost peerHostServices = new PeerServiceHost(peerRegistration, peerNameResolver, peerConfigurationService);
-            Thread thread = new Thread(() => 
-            {
-                peerHostServices.RunPeerServiceHost(peer);
-            }) { IsBackground = true };
-            thread.Start();
+             Peer<IPingService> peer = new Peer<IPingService>() 
+             {
+                 Id = Guid.NewGuid().ToString().Split('-')[4],
+                 Username = username
+             };
 
-            Console.ReadLine();
-        }
-    }
+             IPeerConfigurationService<PingService> peerConfigurationService = new PeerConfigurationService(peer);
+             IPeerRegistrationRepository peerRegistration = new PeerRegistrationManager();
+             IPeerNameResolverRepository peerNameResolver = new PeerNameResolver(peer.Id);
+
+             PeerServiceHost peerHostServices = new PeerServiceHost(peerRegistration, peerNameResolver, peerConfigurationService);
+             Thread thread = new Thread(() => 
+             {
+                 peerHostServices.RunPeerServiceHost(peer);
+
+             }) { IsBackground = true };
+             thread.Start();
+
+             Console.ReadLine();
+         }
+     }
 }

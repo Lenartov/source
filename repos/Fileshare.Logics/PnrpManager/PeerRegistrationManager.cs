@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Net.PeerToPeer;
-using FileShare.Contracts.Repository;
 
-namespace Fileshare.Logics.PnrpManager
-{
+namespace FileShare
+{ 
     public class PeerRegistrationManager : IPeerRegistrationRepository
     {
         private PeerNameRegistration peerNameRegistration = null;

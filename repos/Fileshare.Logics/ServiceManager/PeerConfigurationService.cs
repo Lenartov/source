@@ -1,19 +1,27 @@
-﻿using FileShare.Contracts.Services;
-using FileShare.Domains;
-using System;
+﻿using System;
 using System.Net;
 using System.Net.PeerToPeer;
 using System.Net.Sockets;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 
-namespace Fileshare.Logics.ServiceManager
+namespace FileShare
 {
     public class PeerConfigurationService : IPeerConfigurationService<PingService>
     {
         private ICommunicationObject Communication;
         private DuplexChannelFactory<IPingService> factory;
         private bool isServiceStarted;
+
+       /* public PeerConfigurationService(Peer<IPingService> peer)
+        {
+            Peer = peer;
+            HostInfo hostInfo = new HostInfo();
+            hostInfo.Id = peer.Id;
+            hostInfo.Port = Port;
+               
+            PingService = new PingService();
+        }*/
 
         public PeerConfigurationService(Peer<IPingService> peer)
         {
@@ -33,6 +41,8 @@ namespace Fileshare.Logics.ServiceManager
 #pragma warning restore 618
             ServiceEndpoint endPoint = new ServiceEndpoint(ContractDescription.GetContract(typeof(IPingService)), binding, new EndpointAddress("net.p2p://FileShare"));
 
+            
+
             Peer.Host = PingService;
             factory = new DuplexChannelFactory<IPingService>(new InstanceContext(Peer.Host), endPoint);
             Peer.Channel = factory.CreateChannel();
@@ -46,9 +56,11 @@ namespace Fileshare.Logics.ServiceManager
                 {
                     Communication.Open();
                     if (isServiceStarted)
+                    {
                         return isServiceStarted;
+                    }
                 }
-                catch(PeerToPeerException)
+                catch (PeerToPeerException)
                 {
                     throw new PeerToPeerException("error establishing peer services");
                 }

@@ -1,14 +1,11 @@
-﻿using FileShare.Contracts.FileShareServices;
-using FileShare.Domains;
-using FileShare.Domains.FIleSearch;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fileshare.Logics.FileShareManager
+namespace FileShare
 {
     public delegate void CurrentHostInfo(HostInfo info, bool isCallback = false);
     public delegate void CurrentClientInfo(string peerId, IFileShareServiceCallback callback);
@@ -16,7 +13,7 @@ namespace Fileshare.Logics.FileShareManager
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public class FileShareManager : IFileShareService
     {
-        private Dictionary<string, HostInfo> currentHost = new Dictionary<string, HostInfo>();
+        private Dictionary<string, HostInfo> currentHosts = new Dictionary<string, HostInfo>();
 
         public event CurrentHostInfo CurrentHostUpDate;
 
@@ -54,7 +51,7 @@ namespace Fileshare.Logics.FileShareManager
                 }
                 else if(callback.isConnected($"Direct peer conection established from server at: {DateTime.UtcNow:D}"))
                 {
-                    currentHost.Add(info.Id, info);
+                    currentHosts.Add(info.Id, info);
                     info.CallBack = callback;
                     CurrentHostUpDate?.Invoke(info);
                 }

@@ -73,8 +73,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PeerHostServices\FileShareCallback.cs" />
-    <Compile Include="PeerHostServices\PeerServiceHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,17 +81,9 @@
     <None Include="PeerToPeer_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FileShare.Contracts\FileShare.Contracts.csproj">
-      <Project>{48A76529-AD7D-4F55-B609-590147F75C41}</Project>
-      <Name>FileShare.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FileShare.Domains\FileShare.Domains.csproj">
-      <Project>{9AC06D21-6CEE-4458-A141-D5B3E546EE96}</Project>
-      <Name>FileShare.Domains</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fileshare.Logics\Fileshare.Logics.csproj">
+    <ProjectReference Include="..\Fileshare.Logics\Fileshare.csproj">
       <Project>{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}</Project>
-      <Name>Fileshare.Logics</Name>
+      <Name>Fileshare</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -108,8 +98,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PeerClientServices\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Net.PeerToPeer;
 using System.Net.PeerToPeer.Collaboration;
-using FileShare.Contracts.Repository;
-using FileShare.Domains;
 
-namespace Fileshare.Logics.PnrpManager
+
+namespace FileShare
 {
     public class PeerNameResolver : IPeerNameResolverRepository
     {

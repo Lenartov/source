@@ -21,11 +21,7 @@ D:\Blockchain\source\repos\PeerToPeer\bin\Debug\PeerToPeer.exe.manifest
 D:\Blockchain\source\repos\PeerToPeer\bin\Debug\PeerToPeer.application
 D:\Blockchain\source\repos\PeerToPeer\bin\Debug\PeerToPeer.exe
 D:\Blockchain\source\repos\PeerToPeer\bin\Debug\PeerToPeer.pdb
-D:\Blockchain\source\repos\PeerToPeer\bin\Debug\FileShare.Contracts.dll
-D:\Blockchain\source\repos\PeerToPeer\bin\Debug\FileShare.Domains.dll
 D:\Blockchain\source\repos\PeerToPeer\bin\Debug\Fileshare.Logics.dll
-D:\Blockchain\source\repos\PeerToPeer\bin\Debug\FileShare.Contracts.pdb
-D:\Blockchain\source\repos\PeerToPeer\bin\Debug\FileShare.Domains.pdb
 D:\Blockchain\source\repos\PeerToPeer\bin\Debug\Fileshare.Logics.pdb
 D:\Blockchain\source\repos\PeerToPeer\obj\Debug\PeerToPeer.csproj.AssemblyReference.cache
 D:\Blockchain\source\repos\PeerToPeer\obj\Debug\PeerToPeer.csproj.CoreCompileInputs.cache
@@ -34,5 +30,3 @@ D:\Blockchain\source\repos\PeerToPeer\obj\Debug\PeerToPeer.application
 D:\Blockchain\source\repos\PeerToPeer\obj\Debug\PeerToPeer.csproj.CopyComplete
 D:\Blockchain\source\repos\PeerToPeer\obj\Debug\PeerToPeer.exe
 D:\Blockchain\source\repos\PeerToPeer\obj\Debug\PeerToPeer.pdb
-D:\Blockchain\source\repos\PeerToPeer\bin\Debug\FileShare.SampleData.dll
-D:\Blockchain\source\repos\PeerToPeer\bin\Debug\FileShare.SampleData.pdb

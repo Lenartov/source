@@ -59,6 +59,9 @@
               },
               "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj": {
                 "projectPath": "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj"
+              },
+              "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj"
               }
             }
           }
@@ -139,6 +142,31 @@
             "projectReferences": {
               "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
                 "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj",
+        "projectName": "PeerToPeer",
+        "projectPath": "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj"
+              },
+              "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
+              },
+              "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj": {
+                "projectPath": "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj"
               }
             }
           }

@@ -9,17 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainTests", "..\Block
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeerToPeer", "..\PeerToPeer\PeerToPeer.csproj", "{00833A70-0CD2-4A37-8F39-E2C11181B4E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileShare.Desktop", "..\FileShare.Desktop\FileShare.Desktop.csproj", "{152A774C-C232-4353-8C60-39E418A3B921}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare.Domains", "..\FileShare.Domains\FileShare.Domains.csproj", "{9AC06D21-6CEE-4458-A141-D5B3E546EE96}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare.Contracts", "..\FileShare.Contracts\FileShare.Contracts.csproj", "{48A76529-AD7D-4F55-B609-590147F75C41}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fileshare.Logics", "..\Fileshare.Logics\Fileshare.Logics.csproj", "{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fileshare", "..\Fileshare.Logics\Fileshare.csproj", "{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extension", "Extension", "{2FD5E036-0F93-45D0-9E4A-0EC935104533}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare.SampleData", "..\FileShare.SampleData\FileShare.SampleData.csproj", "{5D18BD45-2A04-4887-A80D-C46A804F02E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,32 +31,13 @@ Global
 		{00833A70-0CD2-4A37-8F39-E2C11181B4E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00833A70-0CD2-4A37-8F39-E2C11181B4E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00833A70-0CD2-4A37-8F39-E2C11181B4E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{152A774C-C232-4353-8C60-39E418A3B921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{152A774C-C232-4353-8C60-39E418A3B921}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{152A774C-C232-4353-8C60-39E418A3B921}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{152A774C-C232-4353-8C60-39E418A3B921}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AC06D21-6CEE-4458-A141-D5B3E546EE96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AC06D21-6CEE-4458-A141-D5B3E546EE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AC06D21-6CEE-4458-A141-D5B3E546EE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AC06D21-6CEE-4458-A141-D5B3E546EE96}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48A76529-AD7D-4F55-B609-590147F75C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48A76529-AD7D-4F55-B609-590147F75C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48A76529-AD7D-4F55-B609-590147F75C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48A76529-AD7D-4F55-B609-590147F75C41}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D18BD45-2A04-4887-A80D-C46A804F02E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D18BD45-2A04-4887-A80D-C46A804F02E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D18BD45-2A04-4887-A80D-C46A804F02E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D18BD45-2A04-4887-A80D-C46A804F02E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{5D18BD45-2A04-4887-A80D-C46A804F02E0} = {2FD5E036-0F93-45D0-9E4A-0EC935104533}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7EAA3D3C-CB59-413F-9400-C95F95324F3D}

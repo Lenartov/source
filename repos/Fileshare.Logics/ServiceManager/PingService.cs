@@ -1,8 +1,4 @@
-﻿using FileShare.Contracts.Services;
-using FileShare.Domains;
-using FileShare.Domains.FIleSearch;
-using FileShare.SampleData;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,14 +6,21 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fileshare.Logics.ServiceManager
+namespace FileShare
 {
+    public enum OperationType
+    {
+        GetBlocks,
+        SendBlocks,
+        SendBlock
+    }
+
     public delegate void OnPeerInfo(HostInfo endPointInfo);
     public delegate void FileSearchResult(FileSerchResultModel fileSerch);
 
     public class PingService : IPingService
     {
-        public event OnPeerInfo PeerEndPointInformation;
+        public event OnPeerInfo OnPeerEndPointInfoShow;
         public event FileSearchResult FileSearchResult;
 
         private Random rnd;
@@ -41,6 +44,8 @@ namespace Fileshare.Logics.ServiceManager
             FileServiceHost = info;
             ClientHostDetails = new ObservableCollection<HostInfo>();
 
+            rnd = new Random();
+            AvailableFileMetaData = new FileSample().GetFileMetaDatas().Take(rnd.Next(1, count)).ToList();
         }
 
         public void Ping(HostInfo hostInfo)
@@ -58,7 +63,52 @@ namespace Fileshare.Logics.ServiceManager
                 PeerIpCollection = iPEndPoints 
             };
             //ClientHostDetails.Add(hostInfo);
-            PeerEndPointInformation?.Invoke(hostInfo);
+            OnPeerEndPointInfoShow?.Invoke(hostInfo);
+        }
+
+        public void PingContent2(HostInfo sender, OperationType ot, string content = "", HostInfo reciver = null)
+        {
+
+            if(OperationType.GetBlocks == ot)
+            {
+                if (sender.Uri == CurrentPeer.Instance.Uri)
+                    return;
+
+                CurrentPeer i = CurrentPeer.Instance;
+                HostInfo me = new HostInfo
+                {
+                    Id = i.Id,
+                    Port = i.Port,
+                    Uri = i.Uri
+                };
+
+                string cont = " "; // fill content
+
+                PingContent2(me, OperationType.SendBlocks, cont, sender);
+            }
+            else if (OperationType.SendBlocks == ot)
+            {
+                if (CurrentPeer.Instance.Uri != reciver?.Uri)
+                    return;
+
+                //set content 
+
+            }
+            else if(OperationType.SendBlock == ot)
+            {
+                if (CurrentPeer.Instance.Uri == sender?.Uri)
+                    return;
+
+                //set content
+            }
+
+        }
+
+        public void PingContent(HostInfo hostInfo, string content)
+        {
+
+            if (CurrentPeer.Instance.Uri != hostInfo.Uri)
+                Console.WriteLine(content);
         }
 
         public void SearchFiles(string searchTerm, string peerId)

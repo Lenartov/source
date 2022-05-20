@@ -54,3 +54,4 @@ D:\Blockchain\source\repos\FileShare.Desktop\obj\Debug\netcoreapp3.1\FileShare.D
 D:\Blockchain\source\repos\FileShare.Desktop\obj\Debug\netcoreapp3.1\FileShare.Desktop.dll
 D:\Blockchain\source\repos\FileShare.Desktop\obj\Debug\netcoreapp3.1\FileShare.Desktop.pdb
 D:\Blockchain\source\repos\FileShare.Desktop\obj\Debug\netcoreapp3.1\FileShare.Desktop.genruntimeconfig.cache
+D:\Blockchain\source\repos\FileShare.Desktop\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs

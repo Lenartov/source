@@ -11,14 +11,7 @@ C:\Users\User\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.dll
 C:\Users\User\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.pdb
 D:\Blockchain\source\repos\Fileshare.Logics\bin\Debug\Fileshare.Logics.dll
 D:\Blockchain\source\repos\Fileshare.Logics\bin\Debug\Fileshare.Logics.pdb
-D:\Blockchain\source\repos\Fileshare.Logics\bin\Debug\FileShare.Contracts.dll
-D:\Blockchain\source\repos\Fileshare.Logics\bin\Debug\FileShare.Domains.dll
-D:\Blockchain\source\repos\Fileshare.Logics\bin\Debug\FileShare.Contracts.pdb
-D:\Blockchain\source\repos\Fileshare.Logics\bin\Debug\FileShare.Domains.pdb
 D:\Blockchain\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.csproj.AssemblyReference.cache
 D:\Blockchain\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.csproj.CoreCompileInputs.cache
-D:\Blockchain\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.csproj.CopyComplete
 D:\Blockchain\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.dll
 D:\Blockchain\source\repos\Fileshare.Logics\obj\Debug\Fileshare.Logics.pdb
-D:\Blockchain\source\repos\Fileshare.Logics\bin\Debug\FileShare.SampleData.dll
-D:\Blockchain\source\repos\Fileshare.Logics\bin\Debug\FileShare.SampleData.pdb

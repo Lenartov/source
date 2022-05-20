@@ -48,6 +48,20 @@
         "runtime": {
           "bin/placeholder/FileShare.SampleData.dll": {}
         }
+      },
+      "PeerToPeer/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "FileShare.Contracts": "1.0.0",
+          "FileShare.Domains": "1.0.0",
+          "Fileshare.Logics": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PeerToPeer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PeerToPeer.dll": {}
+        }
       }
     }
   },
@@ -71,13 +85,19 @@
       "type": "project",
       "path": "../FileShare.SampleData/FileShare.SampleData.csproj",
       "msbuildProject": "../FileShare.SampleData/FileShare.SampleData.csproj"
+    },
+    "PeerToPeer/1.0.0": {
+      "type": "project",
+      "path": "../PeerToPeer/PeerToPeer.csproj",
+      "msbuildProject": "../PeerToPeer/PeerToPeer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "FileShare.Contracts >= 1.0.0",
       "FileShare.Domains >= 1.0.0",
-      "Fileshare.Logics >= 1.0.0"
+      "Fileshare.Logics >= 1.0.0",
+      "PeerToPeer >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -120,6 +140,9 @@
             },
             "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj": {
               "projectPath": "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj"
+            },
+            "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj": {
+              "projectPath": "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj"
             }
           }
         }
