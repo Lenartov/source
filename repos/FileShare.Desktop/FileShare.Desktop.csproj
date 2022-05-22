@@ -14,7 +14,6 @@
     <ProjectReference Include="..\FileShare.Contracts\FileShare.Contracts.csproj" />
     <ProjectReference Include="..\FileShare.Domains\FileShare.Domains.csproj" />
     <ProjectReference Include="..\Fileshare.Logics\Fileshare.Logics.csproj" />
-    <ProjectReference Include="..\PeerToPeer\PeerToPeer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

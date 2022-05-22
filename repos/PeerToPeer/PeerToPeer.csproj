@@ -73,18 +73,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PeerHostServices\FileShareCallback.cs" />
+    <Compile Include="PeerHostServices\PeerServiceHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="PeerToPeer_TemporaryKey.pfx" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fileshare.Logics\Fileshare.csproj">
-      <Project>{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}</Project>
-      <Name>Fileshare</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

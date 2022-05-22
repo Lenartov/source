@@ -5,11 +5,7 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain", "Blockchain.csproj", "{AA5EA739-7E1F-4D60-B85D-BB1ED9F4233B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainTests", "..\BlockchainTests\BlockchainTests.csproj", "{D4A5D5A3-3F4A-49EE-9E8F-79A3EAA475AC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeerToPeer", "..\PeerToPeer\PeerToPeer.csproj", "{00833A70-0CD2-4A37-8F39-E2C11181B4E4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fileshare", "..\Fileshare.Logics\Fileshare.csproj", "{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extension", "Extension", "{2FD5E036-0F93-45D0-9E4A-0EC935104533}"
 EndProject
@@ -23,18 +19,10 @@ Global
 		{AA5EA739-7E1F-4D60-B85D-BB1ED9F4233B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA5EA739-7E1F-4D60-B85D-BB1ED9F4233B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA5EA739-7E1F-4D60-B85D-BB1ED9F4233B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D4A5D5A3-3F4A-49EE-9E8F-79A3EAA475AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4A5D5A3-3F4A-49EE-9E8F-79A3EAA475AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4A5D5A3-3F4A-49EE-9E8F-79A3EAA475AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4A5D5A3-3F4A-49EE-9E8F-79A3EAA475AC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00833A70-0CD2-4A37-8F39-E2C11181B4E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00833A70-0CD2-4A37-8F39-E2C11181B4E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00833A70-0CD2-4A37-8F39-E2C11181B4E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00833A70-0CD2-4A37-8F39-E2C11181B4E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB04F946-2919-4BC3-B9B1-4F30921BE4BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

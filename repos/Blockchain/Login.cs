@@ -29,6 +29,7 @@ namespace Blockchain
             {
                 if(CheckPassword())
                 {
+                    
                     Close();
                 }
             }

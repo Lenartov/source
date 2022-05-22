@@ -4,25 +4,6 @@
     "D:\\Blockchain\\source\\repos\\FileShare.Desktop\\FileShare.Desktop.csproj": {}
   },
   "projects": {
-    "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj": {
-      "restore": {
-        "projectUniqueName": "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj",
-        "projectName": "FileShare.Contracts",
-        "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj",
-        "frameworks": {
-          "net472": {
-            "projectReferences": {
-              "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
-                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
-              }
-            }
-          }
-        }
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
     "D:\\Blockchain\\source\\repos\\FileShare.Desktop\\FileShare.Desktop.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -51,17 +32,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj": {
-                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj"
-              },
               "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
                 "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
               },
               "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj": {
                 "projectPath": "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj"
-              },
-              "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj": {
-                "projectPath": "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj"
               }
             }
           }
@@ -115,58 +90,8 @@
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj": {
-                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj"
-              },
               "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
                 "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
-              },
-              "D:\\Blockchain\\source\\repos\\FileShare.SampleData\\FileShare.SampleData.csproj": {
-                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.SampleData\\FileShare.SampleData.csproj"
-              }
-            }
-          }
-        }
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
-    "D:\\Blockchain\\source\\repos\\FileShare.SampleData\\FileShare.SampleData.csproj": {
-      "restore": {
-        "projectUniqueName": "D:\\Blockchain\\source\\repos\\FileShare.SampleData\\FileShare.SampleData.csproj",
-        "projectName": "FileShare.SampleData",
-        "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.SampleData\\FileShare.SampleData.csproj",
-        "frameworks": {
-          "net472": {
-            "projectReferences": {
-              "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
-                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
-              }
-            }
-          }
-        }
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
-    "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj": {
-      "restore": {
-        "projectUniqueName": "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj",
-        "projectName": "PeerToPeer",
-        "projectPath": "D:\\Blockchain\\source\\repos\\PeerToPeer\\PeerToPeer.csproj",
-        "frameworks": {
-          "net472": {
-            "projectReferences": {
-              "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj": {
-                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Contracts\\FileShare.Contracts.csproj"
-              },
-              "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj": {
-                "projectPath": "D:\\Blockchain\\source\\repos\\FileShare.Domains\\FileShare.Domains.csproj"
-              },
-              "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj": {
-                "projectPath": "D:\\Blockchain\\source\\repos\\Fileshare.Logics\\Fileshare.Logics.csproj"
               }
             }
           }

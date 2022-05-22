@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FileShare;
 
 namespace Blockchain
 {
     public class Chain
     {
-        public List<Block> Blocks { get; private set; }
+        public bool sendreg = false;
+        public string json;
+        public HostInfo reciver;
+
+        public List<Block> Blocks { get; set; }
         public Block LastBlock => Blocks.Last();
 
         public List<User> Users { get; private set; }
         public List<string> Datas { get; private set; }
 
         public List<string> Hosts { get; private set; }
+
+        public static Chain Instance;
 
         public Chain()
         {
@@ -32,11 +39,37 @@ namespace Blockchain
             AddBlock(genesisBlock);
         }
 
+        public IPingService pingService; 
+
+        public Chain(PeerServiceHost peerService)
+        {
+            pingService = peerService.ConfigurPeer.Peer.Channel;
+
+            if (Instance == null)
+                Instance = this;
+
+            InitDataLists();
+            Blocks = LoadFromDB();
+
+           // pingService.PingContent(CurrentHost.Instance.Info, OperationType.GetBlocks);
+
+        }
+
+        public void Ping()
+        {
+            //pingService.Ping(CurrentHost.Instance.Info);
+
+            if(sendreg)
+            {
+                sendreg = false;
+                pingService.SendBack(CurrentHost.Instance.Info, OperationType.GetBlocks, json, reciver);
+            }
+            else
+                pingService.PingContent(CurrentHost.Instance.Info, OperationType.GetBlocks);
+        }
+
         private void InitDataLists()
         {
-            Hosts = new List<string>();
-            Hosts.Add("https://localhost:44357");
-
             Blocks = new List<Block>();
             Users = new List<User>();
             Datas = new List<string>();

@@ -18,12 +18,13 @@ namespace Blockchain
     {
         public ConnectDelegate peerConnectDel;
 
+        public Chain Chain;
         public PeerServiceHost peerService;
         public string username;
 
         private Login login;
         private bool isPeerConected = false;
-
+        
         public Form1()
         {
             peerConnectDel += (port, uri) =>
@@ -31,12 +32,15 @@ namespace Blockchain
                 PortView.Text = port;
                 UriView.Text = uri;
                 isPeerConected = true;
+                Chain = new Chain(peerService);
+                listBox1.Items.AddRange(Chain.Blocks.ToArray());
             };
 
             InitializeComponent();
 
             login = new Login();
-            login.ShowDialog();
+            var res = login.ShowDialog();
+
 
             UsernameView.Text = login.Username;
 
@@ -48,7 +52,7 @@ namespace Blockchain
         {
             if (isPeerConected)
             {
-
+                Chain.Ping();
             }
         }
 
