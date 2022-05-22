@@ -13,6 +13,7 @@ namespace Blockchain
 
         public List<Block> Blocks { get; set; }
         public Block LastBlock => Blocks.Last();
+        public IPingService pingService;
 
         public List<User> Users { get; private set; }
         public List<string> Datas { get; private set; }
@@ -39,7 +40,6 @@ namespace Blockchain
             AddBlock(genesisBlock);
         }
 
-        public IPingService pingService; 
 
         public Chain(PeerServiceHost peerService)
         {
@@ -80,7 +80,7 @@ namespace Blockchain
             Blocks.Add(block);
             Save(block);
             SortDataByType(block);
-            SendBlockToHosts(block);
+            SendBlockToHost(block);
 
             if (!Check())
             {
@@ -88,12 +88,8 @@ namespace Blockchain
             }
         }
 
-        private void SendBlockToHosts(Block block)
+        private void SendBlockToHost(Block block)
         {
-            foreach (string host in Hosts)
-            {
-                BlockchainNetwork.SendBlockToHost(host, block);
-            }
 
         }
 
@@ -205,7 +201,7 @@ namespace Blockchain
             if (Hosts.Count < 1)
                 return new List<Block>();
 
-            List<Block> longerBlockList;
+           /* List<Block> longerBlockList;
             longerBlockList = BlockchainNetwork.GetBlocksFromHost(Hosts[0]);
 
             foreach (string host in Hosts.Skip(1))
@@ -218,10 +214,10 @@ namespace Blockchain
                 }
             }
 
-            if (longerBlockList == null)
-                return new List<Block>();
+            /*if (longerBlockList == null)
+                return new List<Block>();*/
 
-            return longerBlockList;
+            return new List<Block>();
         }
 
         private List<Block> LoadFromDB()

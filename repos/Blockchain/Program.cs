@@ -23,7 +23,7 @@ namespace Blockchain
                 var DBCS = ConfigurationManager.ConnectionStrings[1];
                 var writable = typeof(ConfigurationElement).GetField("_bReadOnly", BindingFlags.Instance | BindingFlags.NonPublic);
                 writable.SetValue(DBCS, false);
-                DBCS.ConnectionString = "data source=(localdb)\\MSSQLLocalDB;Initial Catalog=store1;Integrated Security=True;";
+                DBCS.ConnectionString = "data source=(localdb)\\MSSQLLocalDB;Initial Catalog=store2;Integrated Security=True;";
 
                 Process.Start("Blockchain.exe");
             }

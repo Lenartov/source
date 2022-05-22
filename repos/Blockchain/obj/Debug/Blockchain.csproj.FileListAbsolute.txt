@@ -31,3 +31,4 @@ D:\Blockchain\source\repos\Blockchain\obj\Debug\Blockchain.pdb
 D:\Blockchain\source\repos\Blockchain\obj\Debug\Blockchain.Login.resources
 D:\Blockchain\source\repos\Blockchain\bin\Debug\Newtonsoft.Json.dll
 D:\Blockchain\source\repos\Blockchain\bin\Debug\Newtonsoft.Json.xml
+D:\Blockchain\source\repos\Blockchain\obj\Debug\Blockchain.Forms.KeysGenerator.resources

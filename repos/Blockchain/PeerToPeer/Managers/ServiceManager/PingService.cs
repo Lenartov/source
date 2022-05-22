@@ -15,7 +15,7 @@ namespace FileShare
     public class PingService : IPingService
     {
         public event OnPeerInfo PeerEndPointInformation;
-        public event FileSearchResult FileSearchResult;
+        //public event FileSearchResult FileSearchResult;
 
         private Random rnd;
        // private int count = new FileSample().GetFileMetaDatas().Count;

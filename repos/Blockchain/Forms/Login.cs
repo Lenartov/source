@@ -13,7 +13,6 @@ namespace Blockchain
     public partial class Login : Form
     {
         public string Username { get; private set; }
-        public string Password { get; private set; }
 
         public Login()
         {
@@ -23,7 +22,6 @@ namespace Blockchain
         private void button1_Click(object sender, EventArgs e)
         {
             Username = textBox1.Text;
-            Password = textBox2.Text;
 
             if(CheckUsername())
             {
