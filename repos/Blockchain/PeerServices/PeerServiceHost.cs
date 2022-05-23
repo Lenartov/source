@@ -10,6 +10,7 @@ namespace Blockchain
 {
     public class PeerServiceHost
     {
+        public Action OnConnect;
         private AutoResetEvent resetEvent = new AutoResetEvent(false);
         private bool isStarted = false;
         private readonly int port = 0;
@@ -30,6 +31,7 @@ namespace Blockchain
 
         public void RunPeerServiceHost(Peer<IPingService> peer, Action onSuccess)
         {
+
             if (peer == null)
                 throw new ArgumentNullException(nameof(peer));
 
@@ -95,6 +97,7 @@ namespace Blockchain
 
         public void PingServiceOnPeerEndPointInformation(HostInfo endPointInfo)
         {
+
             Console.WriteLine("\n");
             if(endPointInfo.CallBack == null)
             {
@@ -182,11 +185,14 @@ namespace Blockchain
                     }
                 }
             }
+
+
         }
-    
+
         public bool StartFileShareService(int port, string uri)
         {
-            if(uri.Any() && port > 0)
+
+            if (uri.Any() && port > 0)
             {
                 Uri[] uris = new Uri[1];
                 string address = $"net.tcp://{uri}:{port}/FileShare";
@@ -211,7 +217,8 @@ namespace Blockchain
 
         private void FileOnCurrentHostUpdate(HostInfo info, bool isCallback)
         {
-            if(isCallback)
+
+            if (isCallback)
             {
                 string uri = $"net.tcp://{info.Uri}:{info.Port}/FileShare";
                 InstanceContext callback = new InstanceContext(new FileShareCallback());

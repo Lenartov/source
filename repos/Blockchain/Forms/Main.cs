@@ -43,12 +43,14 @@ namespace Blockchain
                 UriView.Text = uri;
                 isPeerConected = true;
                 Chain = new Chain(peerService);
-                ListBoxUpdate();
 
                 login = new Login();
                 var res = login.ShowDialog(); // ???
 
+                Chain.RequestChainInfo();
+
                 UsernameView.Text = login.Username;
+                ListBoxUpdate();
 
                 Chain.OnBlocksListChange += ListBoxUpdate;
             };

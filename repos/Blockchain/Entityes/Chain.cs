@@ -8,9 +8,6 @@ namespace Blockchain
     public class Chain
     {
         public Action OnBlocksListChange;
-        public bool sendreg = false;
-        public string json;
-        public HostInfo reciver;
 
         private List<Block> blocks = new List<Block>();
 
@@ -25,7 +22,16 @@ namespace Blockchain
                 blocks = value;
             }
         }
-        public Block LastBlock => Blocks.Last();
+        public Block LastBlock 
+        { 
+            get
+            {
+                if (Blocks.Count < 1)
+                    AddBlock(new Block());
+
+                return Blocks.Last();
+            } 
+        }
         public IPingService pingService;
 
         public List<User> Users { get; private set; } = new List<User>();
@@ -35,26 +41,32 @@ namespace Blockchain
 
         public Chain(PeerServiceHost peerService)
         {
-            pingService = peerService.ConfigurPeer.Peer.Channel;
-
             if (Instance == null)
                 Instance = this;
 
             InitDataLists();
 
+            pingService = peerService.ConfigurPeer.Peer.Channel;
+            peerService.OnConnect += a;
+
+
+
             Blocks = LoadFromDB();
 
             RequestChainInfo();
+
+            SortBlocksByType();
 
             if (Blocks.Count < 1)
             {
                 AddBlock(new Block());
             }
-
-            SortBlocksByType();
-
             // pingService.PingContent(CurrentHost.Instance.Info, OperationType.GetBlocks);
+        }
 
+        public void a()
+        {
+            RequestChainInfo();
         }
 
         public bool CompareBlocks(List<Block> blocks)
@@ -88,33 +100,17 @@ namespace Blockchain
             pingService.SendChainInfo(CurrentHost.Instance.Info, reciver, Blocks.Count, Check(Blocks));
         }
 
-        public void Ping()
-        {
-            //pingService.Ping(CurrentHost.Instance.Info);
-
-          /*  if(sendreg)
-            {
-                sendreg = false;
-                pingService.SendBack(CurrentHost.Instance.Info, OperationType.GetBlocks, json, reciver);
-            }
-            else
-                pingService.RequestBlocks(CurrentHost.Instance.Info, OperationType.GetBlocks);*/
-        }
-
         private void InitDataLists()
         {
             Blocks = new List<Block>();
             Users = new List<User>();
             Datas = new List<string>();
 
-
             OnBlocksListChange?.Invoke();
         }
 
-        public void AddBlock(Block block)
+        public void AddBlockLocal(Block block)
         {
-            SendBlockToHost(block);
-
             Blocks.Add(block);
             Save(block);
             SortBlockByType(block);
@@ -127,6 +123,12 @@ namespace Blockchain
             OnBlocksListChange?.Invoke();
         }
 
+        public void AddBlock(Block block)
+        {
+            SendBlockToHost(block);
+            AddBlockLocal(block);
+        }
+
         public void AddUser(User user)
         {
             Data data = new Data(user.GetJson());
@@ -137,7 +139,7 @@ namespace Blockchain
 
         private void SendBlockToHost(Block block)
         {
-
+            pingService.SendBlock(CurrentHost.Instance.Info, block);
         }
 
         private void SortBlocksByType()
@@ -202,13 +204,24 @@ namespace Blockchain
 
         public bool Check(List<Block> blocks)
         {
+            if (Blocks.Count < 1)
+                return false;
 
-            foreach(Block block in blocks)
+            string data = blocks[0].GetSummaryData();
+            string hash = data.GetHash();
+
+            if (blocks[0].Hash != hash)
+                return false;
+
+            for (int i = 1; i < blocks.Count; i++)
             {
-                string data = block.GetSummaryData();
-                string hash = data.GetHash();
+                if (blocks[i].PrevHash != blocks[i - 1].Hash)
+                    return false;
 
-                if (block.Hash != hash)
+                data = blocks[i].GetSummaryData();
+                hash = data.GetHash();
+
+                if (blocks[i].Hash != hash)
                     return false;
             }
 
@@ -238,6 +251,12 @@ namespace Blockchain
                 blocks = new List<Block>(db.Blocks.Count() * 2);
                 if(db.Blocks.Count() > 0)
                     blocks.AddRange(db.Blocks);
+            }
+
+            if(!Check(blocks))
+            {
+                ClearLocalDB();
+                return new List<Block>();
             }
 
             return blocks;
