@@ -7,39 +7,31 @@ namespace Blockchain
 {
     public class Chain
     {
+        public Action OnBlocksListChange;
         public bool sendreg = false;
         public string json;
         public HostInfo reciver;
 
-        public List<Block> Blocks { get; set; }
+        private List<Block> blocks = new List<Block>();
+
+        public List<Block> Blocks
+        {
+            get
+            {
+                return blocks;
+            }
+            set
+            {
+                blocks = value;
+            }
+        }
         public Block LastBlock => Blocks.Last();
         public IPingService pingService;
 
-        public List<User> Users { get; private set; }
-        public List<string> Datas { get; private set; }
-
-        public List<string> Hosts { get; private set; }
+        public List<User> Users { get; private set; } = new List<User>();
+        public List<string> Datas { get; private set; } = new List<string>();
 
         public static Chain Instance;
-
-        public Chain()
-        {
-            InitDataLists();
-
-            LoadBlocks();
-
-            if (Blocks.Count > 0)
-            {
-                if (!Check())
-                    throw new System.Exception("Load error");
-
-                return;
-            }
-
-            Block genesisBlock = new Block();
-            AddBlock(genesisBlock);
-        }
-
 
         public Chain(PeerServiceHost peerService)
         {
@@ -49,23 +41,64 @@ namespace Blockchain
                 Instance = this;
 
             InitDataLists();
+
             Blocks = LoadFromDB();
 
-           // pingService.PingContent(CurrentHost.Instance.Info, OperationType.GetBlocks);
+            RequestChainInfo();
 
+            if (Blocks.Count < 1)
+            {
+                AddBlock(new Block());
+            }
+
+            SortBlocksByType();
+
+            // pingService.PingContent(CurrentHost.Instance.Info, OperationType.GetBlocks);
+
+        }
+
+        public bool CompareBlocks(List<Block> blocks)
+        {
+            if(Blocks.Count < blocks.Count)
+            {
+                if (Check(blocks))
+                    return true;
+            }
+            return false;
+        }
+
+        public void RequestChainInfo()
+        {
+            pingService.RequestChainInfo(CurrentHost.Instance.Info);
+        }
+
+        public void RequestBlocks(HostInfo reciver)
+        {
+            pingService.RequestBlocks(CurrentHost.Instance.Info, reciver);
+        }
+
+
+        public void SendBlocks(HostInfo reciver)
+        {
+            pingService.SendBlocks(CurrentHost.Instance.Info, reciver, Blocks.ToArray());
+        }
+
+        public void SendChainInfo(HostInfo reciver)
+        {
+            pingService.SendChainInfo(CurrentHost.Instance.Info, reciver, Blocks.Count, Check(Blocks));
         }
 
         public void Ping()
         {
             //pingService.Ping(CurrentHost.Instance.Info);
 
-            if(sendreg)
+          /*  if(sendreg)
             {
                 sendreg = false;
                 pingService.SendBack(CurrentHost.Instance.Info, OperationType.GetBlocks, json, reciver);
             }
             else
-                pingService.PingContent(CurrentHost.Instance.Info, OperationType.GetBlocks);
+                pingService.RequestBlocks(CurrentHost.Instance.Info, OperationType.GetBlocks);*/
         }
 
         private void InitDataLists()
@@ -73,19 +106,33 @@ namespace Blockchain
             Blocks = new List<Block>();
             Users = new List<User>();
             Datas = new List<string>();
+
+
+            OnBlocksListChange?.Invoke();
         }
 
         public void AddBlock(Block block)
         {
-            Blocks.Add(block);
-            Save(block);
-            SortDataByType(block);
             SendBlockToHost(block);
 
-            if (!Check())
+            Blocks.Add(block);
+            Save(block);
+            SortBlockByType(block);
+
+            if (!Check(Blocks))
             {
                 throw new MethodAccessException("Incorrect block adding");
             }
+
+            OnBlocksListChange?.Invoke();
+        }
+
+        public void AddUser(User user)
+        {
+            Data data = new Data(user.GetJson());
+
+            Block block = new Block(user, data, LastBlock, BlockType.USER);
+            AddBlock(block);
         }
 
         private void SendBlockToHost(Block block)
@@ -93,49 +140,35 @@ namespace Blockchain
 
         }
 
-        public Block AddHost(string ip, User user)
+        private void SortBlocksByType()
         {
-            if (string.IsNullOrEmpty(ip))
+            Users = new List<User>();
+            Datas = new List<string>();
+
+            foreach (Block block in Blocks)
             {
-                throw new ArgumentNullException(nameof(ip), "IP null.");
+                SortBlockByType(block);
             }
-
-            Data data = new Data(ip, DataType.NODE);
-            Block block = new Block(user, data, LastBlock);
-
-            AddBlock(block);
-
-            return block;
         }
 
-        private void SortDataByType(Block block)
+        private void SortBlockByType(Block block)
         {
-            switch (block.Data.Type)
+            switch (block.BlockType)
             {
-                case DataType.USER:
-                    Users.Add(block.User);
-                    /*foreach (var host in _hosts)
+                case BlockType.USER:
                     {
-                        SendBlockToHosts(host, "AddData", block.Data.Content);
-                    }*/
-                    break;
-                case DataType.STR:
-                    Datas.Add(block.Data.Content);
-
-                    /*foreach (var host in _hosts)
+                        Users.Add(block.User);
+                        break;
+                    }
+                case BlockType.STR:
                     {
-                        SendBlockToHosts(host, "AddUser", $"{user.Login}&{user.Password}&{user.Role}");
-                    }*/
-                    break;
-                case DataType.NODE:
-                    Hosts.Add(block.Data.Content);
-                    /*foreach (var host in _hosts)
-                    {
-                        SendBlockToHosts(host, "AddHost", block.Data.Content);
-                    }*/
-                    break;
+                        Datas.Add(block.Data.Content);
+                        break;
+                    }
                 default:
-                    throw new ArgumentException(nameof(block), "Unknown type of block");
+                    {
+                        throw new ArgumentException(nameof(block), "Unknown type of block");
+                    }
             }
         }
 
@@ -167,10 +200,10 @@ namespace Blockchain
         }
 
 
-        public bool Check()
+        public bool Check(List<Block> blocks)
         {
 
-            foreach(Block block in Blocks)
+            foreach(Block block in blocks)
             {
                 string data = block.GetSummaryData();
                 string hash = data.GetHash();
@@ -196,30 +229,6 @@ namespace Blockchain
             }
         }
 
-        private List<Block> LoadLongestChainFromGlobal()
-        {
-            if (Hosts.Count < 1)
-                return new List<Block>();
-
-           /* List<Block> longerBlockList;
-            longerBlockList = BlockchainNetwork.GetBlocksFromHost(Hosts[0]);
-
-            foreach (string host in Hosts.Skip(1))
-            {
-                List<Block> blocks = BlockchainNetwork.GetBlocksFromHost(host);
-                
-                if(blocks.Count > longerBlockList.Count)
-                {
-                    longerBlockList = blocks;
-                }
-            }
-
-            /*if (longerBlockList == null)
-                return new List<Block>();*/
-
-            return new List<Block>();
-        }
-
         private List<Block> LoadFromDB()
         {
             List<Block> blocks;
@@ -234,22 +243,26 @@ namespace Blockchain
             return blocks;
         }
 
-        private void LoadBlocks()
+        public void SetBlocksFromGlobal(List<Block> blocks)
         {
-            List<Block> globalBlocks = LoadLongestChainFromGlobal();
-            List<Block> localBlocks = LoadFromDB();
+            Blocks = blocks;
+            OnBlocksListChange?.Invoke();
 
-            if (globalBlocks.Count >= localBlocks.Count)
+            SyncDBWithGlobal();
+
+            SortBlocksByType();
+
+        }
+
+        private void SyncDBWithGlobal()
+        {
+            ClearLocalDB();
+
+            using (BlockchainContext db = new BlockchainContext())
             {
-                ClearLocalDB();
-
-                foreach (Block block in globalBlocks)
-                {
-                    AddBlock(block);
-                }
+                db.Blocks.AddRange(Blocks);
+                db.SaveChanges();
             }
-
-            Blocks = localBlocks;
         }
 
         private void ClearLocalDB()

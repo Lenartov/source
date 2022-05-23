@@ -33,5 +33,11 @@ namespace Blockchain
             });
 
         }
+
+        public void ListUpdate()
+        {
+            mainForm.Invoke(mainForm.listUpdateDel);
+
+        }
     }
 }

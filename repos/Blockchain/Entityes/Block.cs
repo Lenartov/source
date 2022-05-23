@@ -7,6 +7,12 @@ using System.IO;
 
 namespace Blockchain
 {
+    public enum BlockType
+    {
+        STR,
+        USER
+    }
+
     [DataContract]
     public class Block : IHashable
     {
@@ -15,20 +21,22 @@ namespace Blockchain
         [DataMember] public DateTime Created { get; private set; }
         [DataMember] public string Hash { get; private set; }
         [DataMember] public string PrevHash { get; private set; }
-        [IgnoreDataMember] public User User { get; private set; }
+        [DataMember] public User User { get; private set; }
+        [DataMember] public BlockType BlockType { get; private set; }
 
         public Block()
         {
             Id = 0;
             Created = DateTime.Parse("11.05.2022 00:00:00.000");
             User = new User("Penis", "12345678987654321", UserRole.Admin);
-            Data = new Data(User.GetJson(), DataType.USER);
+            Data = new Data(User.GetJson());
+            BlockType = BlockType.STR;
 
             PrevHash = "3mb90y-45bhjmj43m-t-03,j43gfvk,-".GetHash();
-            Hash = GetSummaryData().GetHash(); // GenerateHash(summaryData);
+            Hash = GetSummaryData().GetHash();
         }
 
-        public Block(User user, Data data, Block prevBlock)
+        public Block(User user, Data data, Block prevBlock, BlockType blockType)
         {
             if (user == null)
             {
@@ -51,6 +59,7 @@ namespace Blockchain
             Created = DateTime.UtcNow.ToUniversalTime();
             PrevHash = prevBlock.Hash;
             Id = prevBlock.Id + 1;
+            BlockType = blockType;
 
             Hash = GetSummaryData().GetHash();
         }

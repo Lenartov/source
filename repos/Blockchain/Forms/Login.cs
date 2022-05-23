@@ -13,6 +13,7 @@ namespace Blockchain
     public partial class Login : Form
     {
         public string Username { get; private set; }
+        public string Password { get; private set; }
 
         public Login()
         {
@@ -22,16 +23,14 @@ namespace Blockchain
         private void button1_Click(object sender, EventArgs e)
         {
             Username = textBox1.Text;
+            Password = textBox2.Text;
 
-            if(CheckUsername())
+            if(!CheckAuth(Username, Password))
             {
-                if(CheckPassword())
-                {
-                    
-                    Close();
-                }
+                return;
             }
 
+            Close();
         }
 
         public string GetUsername()
@@ -39,13 +38,22 @@ namespace Blockchain
             return Username;
         }
 
-        private bool CheckUsername()
+        private bool CheckAuth(string login, string password)
         {
-            return true;
+            foreach(User user in Chain.Instance.Users)
+            {
+                if (user.Login == login && user.Password == password.GetHash())
+                    return true;
+            }
+            MessageBox.Show("Incorrect login or password");
+
+            return false;
         }
-        private bool CheckPassword()
+
+        private void button2_Click(object sender, EventArgs e)
         {
-            return true;
+            Registration reg = new Registration();
+            reg.ShowDialog();
         }
     }
 }

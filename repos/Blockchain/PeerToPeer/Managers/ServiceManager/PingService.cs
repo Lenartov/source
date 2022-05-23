@@ -79,7 +79,7 @@ namespace FileShare
             PeerEndPointInformation?.Invoke(sender);
         }
 
-        public void PingContent(HostInfo sender, OperationType ot, string content = "", HostInfo reciver = null)
+        public void RequestBlocks(HostInfo sender, OperationType ot, string content = "", HostInfo reciver = null)
         {
             switch (ot)
             {
@@ -148,6 +148,51 @@ namespace FileShare
                 };
                 FileSearchResult?.Invoke(serchResultModel);
             }*/
+        }
+
+        public void RequestBlocks(HostInfo sender, HostInfo reciver)
+        {
+            if (CurrentHost.Instance.Info.Uri != reciver.Uri)
+                return;
+
+            Chain.Instance.SendBlocks(sender);
+        }
+
+        public void SendBlocks(HostInfo sender, HostInfo reciver, Block[] blocks)
+        {
+            if (CurrentHost.Instance.Info.Uri != reciver.Uri)
+                return;
+
+            List<Block> blockList = blocks.ToList();
+            if (Chain.Instance.CompareBlocks(blockList))
+            {
+                Chain.Instance.SetBlocksFromGlobal(blockList);
+            }
+        }
+
+        public void RequestChainInfo(HostInfo sender)
+        {
+            if (CurrentHost.Instance.Info.Uri == sender.Uri)
+                return;
+
+            Chain.Instance.SendChainInfo(sender);
+        }
+
+        public void SendChainInfo(HostInfo sender, HostInfo reciver, int chainLength, bool chainStatus)
+        {
+            if (CurrentHost.Instance.Info.Uri != reciver.Uri)
+                return;
+
+            if (!chainStatus)
+                return;
+
+            if (Chain.Instance.Blocks.Count() < chainLength)
+                Chain.Instance.RequestBlocks(sender);
+        }
+
+        public void SendBlock(HostInfo sender, Block block)
+        {
+            throw new NotImplementedException();
         }
     }
 }

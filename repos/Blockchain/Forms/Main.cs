@@ -14,9 +14,12 @@ using FileShare;
 namespace Blockchain
 {
     public delegate void ConnectDelegate(String arr, String arr2);
+    public delegate void UpdateDelegate();
+
     public partial class Form1 : Form
     {
         public ConnectDelegate peerConnectDel;
+        public UpdateDelegate listUpdateDel;
 
         public Chain Chain;
         public PeerServiceHost peerService;
@@ -27,22 +30,29 @@ namespace Blockchain
         
         public Form1()
         {
+            listUpdateDel += () =>
+            {
+                listBox1.Items.Clear();
+                listBox1.Items.AddRange(Chain.Blocks.ToArray());
+            };
+
+
             peerConnectDel += (port, uri) =>
             {
                 PortView.Text = port;
                 UriView.Text = uri;
                 isPeerConected = true;
                 Chain = new Chain(peerService);
-                listBox1.Items.AddRange(Chain.Blocks.ToArray());
+                ListBoxUpdate();
+
+                login = new Login();
+                var res = login.ShowDialog(); // ???
+
+                UsernameView.Text = login.Username;
+
+                Chain.OnBlocksListChange += ListBoxUpdate;
             };
-
             InitializeComponent();
-
-            login = new Login();
-            var res = login.ShowDialog();
-
-
-            UsernameView.Text = login.Username;
 
             Thread PeeringThread = new Thread(new ThreadStart(ThreadConnect));
             PeeringThread.Start();
@@ -52,7 +62,12 @@ namespace Blockchain
         {
             if (isPeerConected)
             {
-                Chain.Ping();
+                User user = new User(login.Username, login.Password.GetHash(), UserRole.User);
+                Data data = new Data(textBox1.Text);
+                Block block = new Block(user, data, Chain.LastBlock, BlockType.STR);
+
+                Chain.AddBlock(block);
+                textBox1.Clear();
             }
         }
 
@@ -61,10 +76,27 @@ namespace Blockchain
 
         }
 
+        private void ListBoxUpdate()
+        {
+            ThreadListUpdate();
+
+        }
+
         private void ThreadConnect()
         {
             ThreadPeerConnection myThreadClassObject = new ThreadPeerConnection(this);
             myThreadClassObject.Run();
+        }
+
+        private void ThreadListUpdate()
+        {
+            ThreadPeerConnection myThreadClassObject = new ThreadPeerConnection(this);
+            myThreadClassObject.ListUpdate();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Chain.RequestChainInfo();
         }
     }
 }

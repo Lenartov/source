@@ -5,26 +5,18 @@ using System.Text;
 
 namespace Blockchain
 {
-    public enum DataType
-    {
-        STR,
-        USER,
-        NODE
-    }
 
     [DataContract]
     public class Data : IHashable
     {
         [DataMember] public string Content { get; private set; }
         [DataMember] public string Hash { get; private set; }
-        [DataMember] public DataType Type { get; private set; }
 
         public Data() { }
 
-        public Data(string content, DataType type)
+        public Data(string content)
         {
             Content = content;
-            Type = type;
 
             Hash = GetSummaryData().GetHash();
         }
@@ -34,7 +26,6 @@ namespace Blockchain
             string result = "";
 
             result += Content;
-            result += Type;
 
             return result;
         }
