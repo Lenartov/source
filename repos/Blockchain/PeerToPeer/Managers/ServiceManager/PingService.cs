@@ -75,7 +75,11 @@ namespace FileShare
             if (CurrentHost.Instance.Info.Uri != reciver.Uri)
                 return;
 
-            List<Block> blockList = blocks.ToList();
+            SynchronizedCollection<Block> blockList = new SynchronizedCollection<Block>();
+
+            foreach (var b in blocks)
+                blockList.Add(b);
+
             if (Chain.Instance.CompareBlocks(blockList))
             {
                 Chain.Instance.SetBlocksFromGlobal(blockList);
@@ -107,7 +111,8 @@ namespace FileShare
             if (CurrentHost.Instance.Info.Uri == sender.Uri)
                 return;
 
-            Chain.Instance.AddBlockLocal(block);
+            if(!Chain.Instance.Blocks.Contains(block))
+                Chain.Instance.AddBlock(block);
         }
     }
 }

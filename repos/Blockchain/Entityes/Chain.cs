@@ -7,11 +7,12 @@ namespace Blockchain
 {
     public class Chain
     {
+        private object locker = new object();
         public Action OnBlocksListChange;
 
-        private List<Block> blocks = new List<Block>();
+        private SynchronizedCollection<Block> blocks = new SynchronizedCollection<Block>();
 
-        public List<Block> Blocks
+        public SynchronizedCollection<Block> Blocks
         {
             get
             {
@@ -26,7 +27,7 @@ namespace Blockchain
         { 
             get
             {
-                if (Blocks.Count < 1)
+                if (Blocks.Count == 0)
                     AddBlock(new Block());
 
                 return Blocks.Last();
@@ -47,9 +48,6 @@ namespace Blockchain
             InitDataLists();
 
             pingService = peerService.ConfigurPeer.Peer.Channel;
-            peerService.OnConnect += a;
-
-
 
             Blocks = LoadFromDB();
 
@@ -61,15 +59,9 @@ namespace Blockchain
             {
                 AddBlock(new Block());
             }
-            // pingService.PingContent(CurrentHost.Instance.Info, OperationType.GetBlocks);
         }
 
-        public void a()
-        {
-            RequestChainInfo();
-        }
-
-        public bool CompareBlocks(List<Block> blocks)
+        public bool CompareBlocks(SynchronizedCollection<Block> blocks)
         {
             if(Blocks.Count < blocks.Count)
             {
@@ -102,7 +94,7 @@ namespace Blockchain
 
         private void InitDataLists()
         {
-            Blocks = new List<Block>();
+            Blocks = new SynchronizedCollection<Block>();
             Users = new List<User>();
             Datas = new List<string>();
 
@@ -111,22 +103,24 @@ namespace Blockchain
 
         public void AddBlockLocal(Block block)
         {
-            Blocks.Add(block);
-            Save(block);
+            SaveToDB(block);
             SortBlockByType(block);
-
-            if (!Check(Blocks))
-            {
-                throw new MethodAccessException("Incorrect block adding");
-            }
 
             OnBlocksListChange?.Invoke();
         }
 
         public void AddBlock(Block block)
         {
-            SendBlockToHost(block);
+            Blocks.Add(block);
+
+            if (!Check(Blocks))
+            {
+                Blocks.Remove(LastBlock);
+                return;
+            }
+
             AddBlockLocal(block);
+            SendBlockToHost(block);
         }
 
         public void AddUser(User user)
@@ -134,7 +128,8 @@ namespace Blockchain
             Data data = new Data(user.GetJson());
 
             Block block = new Block(user, data, LastBlock, BlockType.USER);
-            AddBlock(block);
+            if (!Blocks.Contains(block))
+                AddBlock(block);
         }
 
         private void SendBlockToHost(Block block)
@@ -202,9 +197,9 @@ namespace Blockchain
         }
 
 
-        public bool Check(List<Block> blocks)
+        public bool Check(SynchronizedCollection<Block> blocks)
         {
-            if (Blocks.Count < 1)
+            if (blocks.Count < 1)
                 return false;
 
             string data = blocks[0].GetSummaryData();
@@ -228,41 +223,58 @@ namespace Blockchain
             return true;
         }
 
-        private void Save(Block block)
-        {
-            SaveToDB(block);
-        }
-
         private void SaveToDB(Block block)
         {
-            using (BlockchainContext db = new BlockchainContext())
+            lock (locker)
             {
-                db.Blocks.Add(block);
-                db.SaveChanges();
+                using (BlockchainContext db = new BlockchainContext())
+                {
+                    Block[] arr = db.Blocks.ToArray();
+
+                    foreach (var a in arr)
+                    {
+                        if (a.Hash == block.Hash)
+                            return;
+                    }
+
+                    db.Blocks.Add(block);
+                    db.SaveChanges();
+                }
             }
         }
 
-        private List<Block> LoadFromDB()
+        private SynchronizedCollection<Block> LoadFromDB()
         {
-            List<Block> blocks;
+            SynchronizedCollection<Block> blocks;
 
-            using(BlockchainContext db = new BlockchainContext())
+            using (BlockchainContext db = new BlockchainContext())
             {
-                blocks = new List<Block>(db.Blocks.Count() * 2);
-                if(db.Blocks.Count() > 0)
-                    blocks.AddRange(db.Blocks);
+                SynchronizedCollection<Block> syncBlocks = new SynchronizedCollection<Block>();
+
+                foreach (var s in db.Blocks)
+                    syncBlocks.Add(s);
+
+                if (!Check(syncBlocks))
+                {
+                    ClearLocalDB();
+                    return new SynchronizedCollection<Block>();
+                }
+
+                blocks = new SynchronizedCollection<Block>(db.Blocks.Count() * 2);
+
+                if (db.Blocks.Count() > 0)
+                {
+                    foreach(var s in syncBlocks)
+                        blocks.Add(s);
+                }
             }
 
-            if(!Check(blocks))
-            {
-                ClearLocalDB();
-                return new List<Block>();
-            }
+
 
             return blocks;
         }
 
-        public void SetBlocksFromGlobal(List<Block> blocks)
+        public void SetBlocksFromGlobal(SynchronizedCollection<Block> blocks)
         {
             Blocks = blocks;
             OnBlocksListChange?.Invoke();
@@ -275,12 +287,20 @@ namespace Blockchain
 
         private void SyncDBWithGlobal()
         {
-            ClearLocalDB();
-
-            using (BlockchainContext db = new BlockchainContext())
+            lock (locker)
             {
-                db.Blocks.AddRange(Blocks);
-                db.SaveChanges();
+                ClearLocalDB();
+
+                using (BlockchainContext db = new BlockchainContext())
+                {
+                    List<Block> hyi = db.Blocks.ToList();
+
+                    foreach (var h in hyi)
+                        db.Blocks.Remove(h);
+
+                    db.Blocks.AddRange(Blocks);
+                    db.SaveChanges();
+                }
             }
         }
 

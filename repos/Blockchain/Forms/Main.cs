@@ -68,8 +68,11 @@ namespace Blockchain
                 Data data = new Data(textBox1.Text);
                 Block block = new Block(user, data, Chain.LastBlock, BlockType.STR);
 
-                Chain.AddBlock(block);
-                textBox1.Clear();
+                if (!Chain.Blocks.Contains(block))
+                {
+                    Chain.AddBlock(block);
+                    textBox1.Clear();
+                }
             }
         }
 

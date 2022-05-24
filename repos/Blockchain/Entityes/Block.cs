@@ -68,29 +68,13 @@ namespace Blockchain
         {
             string result = "";
 
-            result += Created;/*.ToString("dd.MM.yyyy HH:mm:ss.fff");*/
+            result += Created;
             result += PrevHash;
 
             result += Data.GetSummaryData().GetHash();
             result += User.GetSummaryData().GetHash();
 
             return result;
-        }
-
-        private string GenerateHash(string data)
-        {
-            byte[] dataBytes = Encoding.ASCII.GetBytes(data);
-            SHA256Managed hashManager = new SHA256Managed();
-            string hashHex = "";
-
-            var hashValue = hashManager.ComputeHash(dataBytes);
-
-            foreach(byte i in hashValue)
-            {
-                hashHex += string.Format("{0:x2}", i);
-            }
-
-            return hashHex;
         }
 
         public string Serialize()
