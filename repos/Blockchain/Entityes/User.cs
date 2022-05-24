@@ -63,5 +63,16 @@ namespace Blockchain
                 return jsonString;
             }
         }
+
+        public override string ToString()
+        {
+            string role;
+            if (Role == 0)
+                role = "Admin";
+            else
+                role = "User";
+
+            return "Login: " + Login + "  \nRole: " + role + "  \nHash: " + Hash + "  \n Password hash: " + Password;
+        }
     }
 }

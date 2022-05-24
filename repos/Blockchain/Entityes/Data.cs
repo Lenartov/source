@@ -41,5 +41,10 @@ namespace Blockchain
                 return jsonString;
             }
         }
+
+        public override string ToString()
+        {
+            return "Hash: " + Hash + "\n  Content: " + Content;
+        }
     }
 }

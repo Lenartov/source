@@ -4,6 +4,7 @@ using System.Text;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Blockchain
 {
@@ -29,8 +30,8 @@ namespace Blockchain
             Id = 0;
             Created = DateTime.Parse("11.05.2022 00:00:00.000");
             User = new User("Penis", "12345678987654321", UserRole.Admin);
-            Data = new Data(User.GetJson());
-            BlockType = BlockType.STR;
+            Data = new Data("Genesis user admin block");
+            BlockType = BlockType.USER;
 
             PrevHash = "3mb90y-45bhjmj43m-t-03,j43gfvk,-".GetHash();
             Hash = GetSummaryData().GetHash();
@@ -114,6 +115,24 @@ namespace Blockchain
                 jsonFormatter.WriteObject(ms, this);
                 var jsonString = Encoding.UTF8.GetString((ms.ToArray()));
                 return jsonString;
+            }
+        }
+
+        public void ViewContent()
+        {
+            switch(BlockType)
+            {
+                case BlockType.USER:
+                {
+                        MessageBox.Show("This block contain user info"); 
+                    break;
+                }
+                case BlockType.STR:
+                {
+                        MessageBox.Show("This block contain message: \n" + Data.Content);
+
+                        break;
+                }
             }
         }
     }

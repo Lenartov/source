@@ -32,8 +32,12 @@ namespace Blockchain
         {
             listUpdateDel += () =>
             {
-                listBox1.Items.Clear();
-                listBox1.Items.AddRange(Chain.Blocks.ToArray());
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = Chain.Instance.Blocks;
+                dataGridView1.Update();
+
+               // listBox1.Items.Clear();
+               // listBox1.Items.AddRange(Chain.Blocks.ToArray());
             };
 
 
@@ -43,6 +47,8 @@ namespace Blockchain
                 UriView.Text = uri;
                 isPeerConected = true;
                 Chain = new Chain(peerService);
+
+                //dataGridView1.DataSource = Chain.Instance.Blocks;
 
                 login = new Login();
                 var res = login.ShowDialog(); // ???
@@ -101,7 +107,29 @@ namespace Blockchain
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Chain.RequestChainInfo();
+            dataGridView1.DataSource = Chain.Instance.Blocks;
+            dataGridView1.Update();
+            //Chain.RequestChainInfo();
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ContextMenu m = new ContextMenu();
+
+            var mousePos = dataGridView1.PointToClient(Cursor.Position);
+
+            if (e.RowIndex < Chain.Blocks.Count)
+            {
+                MenuItem menuItem = new MenuItem("Open block content");
+                menuItem.Click += (s, elent) =>
+                {
+                    Chain.Blocks[e.RowIndex].ViewContent();
+                };
+
+                m.MenuItems.Add(menuItem);
+            }
+
+            m.Show(dataGridView1, mousePos);
         }
     }
 }
