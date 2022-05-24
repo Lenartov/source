@@ -44,13 +44,6 @@ namespace Blockchain
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.blocksBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.datasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.blocksBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,12 +51,19 @@ namespace Blockchain
             this.prevHashDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.blockTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.blocksBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.chainBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.blocksBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.datasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.blocksBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.blocksBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chainBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blocksBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -197,58 +197,6 @@ namespace Blockchain
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(637, 249);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(150, 23);
-            this.button6.TabIndex = 15;
-            this.button6.Text = "Find file to add";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(636, 157);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(150, 23);
-            this.button7.TabIndex = 16;
-            this.button7.Text = "Show my data";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(636, 186);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(150, 23);
-            this.button8.TabIndex = 17;
-            this.button8.Text = "Show all data";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(318, 9);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "Reload";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // blocksBindingSource
-            // 
-            this.blocksBindingSource.DataMember = "Blocks";
-            this.blocksBindingSource.DataSource = this.chainBindingSource;
-            // 
-            // datasBindingSource
-            // 
-            this.datasBindingSource.DataMember = "Datas";
-            this.datasBindingSource.DataSource = this.chainBindingSource;
-            // 
-            // blocksBindingSource1
-            // 
-            this.blocksBindingSource1.DataMember = "Blocks";
-            this.blocksBindingSource1.DataSource = this.chainBindingSource;
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -298,9 +246,62 @@ namespace Blockchain
             this.blockTypeDataGridViewTextBoxColumn.Name = "blockTypeDataGridViewTextBoxColumn";
             this.blockTypeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // blocksBindingSource1
+            // 
+            this.blocksBindingSource1.DataMember = "Blocks";
+            this.blocksBindingSource1.DataSource = this.chainBindingSource;
+            // 
             // chainBindingSource
             // 
             this.chainBindingSource.DataSource = typeof(Blockchain.Chain);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(637, 249);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(150, 23);
+            this.button6.TabIndex = 15;
+            this.button6.Text = "Find file to add";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(636, 157);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(150, 23);
+            this.button7.TabIndex = 16;
+            this.button7.Text = "Show my data";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(636, 186);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(150, 23);
+            this.button8.TabIndex = 17;
+            this.button8.Text = "Show all data";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(318, 9);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "Reload";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // blocksBindingSource
+            // 
+            this.blocksBindingSource.DataMember = "Blocks";
+            this.blocksBindingSource.DataSource = this.chainBindingSource;
+            // 
+            // datasBindingSource
+            // 
+            this.datasBindingSource.DataMember = "Datas";
+            this.datasBindingSource.DataSource = this.chainBindingSource;
             // 
             // Form1
             // 
@@ -327,12 +328,10 @@ namespace Blockchain
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Blockchain";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.blocksBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.blocksBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chainBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blocksBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,6 +34,24 @@ namespace Blockchain
                 List<Block> blocks = (List<Block>)deserializer.ReadObject(ms);
                 return blocks;
             }
+        }
+
+        public static string ParseFileToBinary(this string path)
+        {
+            try
+            {
+                return Encoding.Default.GetString(File.ReadAllBytes(path));
+
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public static void TryCreateFileFromBinary(this string binaryStr, string path)
+        {
+            File.WriteAllBytes(path, Encoding.Default.GetBytes(binaryStr));
         }
     }
 }

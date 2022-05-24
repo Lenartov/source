@@ -9,9 +9,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "Blockchain.BlockchainContext";
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Blockchain.BlockchainContext context)

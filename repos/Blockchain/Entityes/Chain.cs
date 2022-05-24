@@ -10,17 +10,18 @@ namespace Blockchain
         private object locker = new object();
         public Action OnBlocksListChange;
 
-        private SynchronizedCollection<Block> blocks = new SynchronizedCollection<Block>();
+        
+        private SynchronizedCollection<Block> _blocks = new SynchronizedCollection<Block>();
 
         public SynchronizedCollection<Block> Blocks
         {
             get
             {
-                return blocks;
+                return _blocks;
             }
             set
             {
-                blocks = value;
+                _blocks = value;
             }
         }
         public Block LastBlock 
@@ -36,7 +37,9 @@ namespace Blockchain
         public IPingService pingService;
 
         public List<User> Users { get; private set; } = new List<User>();
-        public List<string> Datas { get; private set; } = new List<string>();
+        public List<Data> StrDatas { get; private set; } = new List<Data>();
+        public List<Data> FileDatas { get; private set; } = new List<Data>();
+
 
         public static Chain Instance;
 
@@ -50,6 +53,7 @@ namespace Blockchain
             pingService = peerService.ConfigurPeer.Peer.Channel;
 
             Blocks = LoadFromDB();
+            OnBlocksListChange?.Invoke();
 
             RequestChainInfo();
 
@@ -96,7 +100,8 @@ namespace Blockchain
         {
             Blocks = new SynchronizedCollection<Block>();
             Users = new List<User>();
-            Datas = new List<string>();
+            StrDatas = new List<Data>();
+            FileDatas = new List<Data>();
 
             OnBlocksListChange?.Invoke();
         }
@@ -140,7 +145,8 @@ namespace Blockchain
         private void SortBlocksByType()
         {
             Users = new List<User>();
-            Datas = new List<string>();
+            StrDatas = new List<Data>();
+            FileDatas = new List<Data>();
 
             foreach (Block block in Blocks)
             {
@@ -159,12 +165,13 @@ namespace Blockchain
                     }
                 case BlockType.STR:
                     {
-                        Datas.Add(block.Data.Content);
+                        StrDatas.Add(block.Data);
                         break;
                     }
-                default:
+                case BlockType.FILE:
                     {
-                        throw new ArgumentException(nameof(block), "Unknown type of block");
+                        FileDatas.Add(block.Data);
+                        break;
                     }
             }
         }
@@ -240,12 +247,13 @@ namespace Blockchain
                     db.Blocks.Add(block);
                     db.SaveChanges();
                 }
+                OnBlocksListChange?.Invoke();
             }
         }
 
         private SynchronizedCollection<Block> LoadFromDB()
         {
-            SynchronizedCollection<Block> blocks;
+            SynchronizedCollection<Block> b;
 
             using (BlockchainContext db = new BlockchainContext())
             {
@@ -260,29 +268,28 @@ namespace Blockchain
                     return new SynchronizedCollection<Block>();
                 }
 
-                blocks = new SynchronizedCollection<Block>(db.Blocks.Count() * 2);
+                b = new SynchronizedCollection<Block>(db.Blocks.Count() * 2);
 
                 if (db.Blocks.Count() > 0)
                 {
                     foreach(var s in syncBlocks)
-                        blocks.Add(s);
+                        b.Add(s);
                 }
             }
 
 
 
-            return blocks;
+            return b;
         }
 
         public void SetBlocksFromGlobal(SynchronizedCollection<Block> blocks)
         {
             Blocks = blocks;
-            OnBlocksListChange?.Invoke();
 
             SyncDBWithGlobal();
 
             SortBlocksByType();
-
+            OnBlocksListChange?.Invoke();
         }
 
         private void SyncDBWithGlobal()
@@ -301,6 +308,7 @@ namespace Blockchain
                     db.Blocks.AddRange(Blocks);
                     db.SaveChanges();
                 }
+                OnBlocksListChange?.Invoke();
             }
         }
 

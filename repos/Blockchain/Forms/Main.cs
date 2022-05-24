@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -35,9 +37,6 @@ namespace Blockchain
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = Chain.Instance.Blocks;
                 dataGridView1.Update();
-
-               // listBox1.Items.Clear();
-               // listBox1.Items.AddRange(Chain.Blocks.ToArray());
             };
 
 
@@ -48,19 +47,27 @@ namespace Blockchain
                 isPeerConected = true;
                 Chain = new Chain(peerService);
 
-                //dataGridView1.DataSource = Chain.Instance.Blocks;
 
                 login = new Login();
-                var res = login.ShowDialog(); // ???
+                var res = login.ShowDialog();
 
                 Chain.RequestChainInfo();
 
                 UsernameView.Text = login.Username;
-                ListBoxUpdate();
+                ThreadListUpdate();
 
-                Chain.OnBlocksListChange += ListBoxUpdate;
+                Chain.OnBlocksListChange += ThreadListUpdate;
+
+                Thread loadKostyl = new Thread(() => 
+                {
+                    Thread.Sleep(3000);
+                    ThreadListUpdate();
+                });
+
+                loadKostyl.Start();
             };
             InitializeComponent();
+
 
             Thread PeeringThread = new Thread(new ThreadStart(ThreadConnect));
             PeeringThread.Start();
@@ -82,17 +89,6 @@ namespace Blockchain
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ListBoxUpdate()
-        {
-            ThreadListUpdate();
-
-        }
-
         private void ThreadConnect()
         {
             ThreadPeerConnection myThreadClassObject = new ThreadPeerConnection(this);
@@ -107,6 +103,7 @@ namespace Blockchain
 
         private void button2_Click(object sender, EventArgs e)
         {
+            dataGridView1.DataSource = null;
             dataGridView1.DataSource = Chain.Instance.Blocks;
             dataGridView1.Update();
             //Chain.RequestChainInfo();
@@ -120,16 +117,62 @@ namespace Blockchain
 
             if (e.RowIndex < Chain.Blocks.Count)
             {
-                MenuItem menuItem = new MenuItem("Open block content");
-                menuItem.Click += (s, elent) =>
+                MenuItem openFileItem = new MenuItem("Open block content");
+                openFileItem.Click += (s, elent) =>
                 {
                     Chain.Blocks[e.RowIndex].ViewContent();
                 };
+                m.MenuItems.Add(openFileItem);
 
-                m.MenuItems.Add(menuItem);
+                MenuItem downloadFileItem = new MenuItem("Download block content");
+                downloadFileItem.Click += (s, elent) =>
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    DialogResult result = saveFileDialog.ShowDialog();
+
+                    if (result != DialogResult.OK)
+                        return;
+
+                    Chain.Blocks[e.RowIndex].DownLoadContentTo(saveFileDialog.FileName);
+                };
+                m.MenuItems.Add(downloadFileItem);
             }
 
             m.Show(dataGridView1, mousePos);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                
+                string path = openFileDialog1.FileName;
+                try
+                {
+                    string content = path.ParseFileToBinary();
+                    string extension = Path.GetExtension(path);
+
+                    if(content == "")
+                    {
+                        MessageBox.Show("empty file");
+                    }
+
+                    User user = new User(login.Username, login.Password.GetHash(), UserRole.User);
+                    Data data = new Data(content, extension);
+                    Block block = new Block(user, data, Chain.LastBlock, BlockType.FILE);
+
+                    if (!Chain.Blocks.Contains(block))
+                    {
+                        Chain.AddBlock(block);
+                    }
+                }
+                catch (IOException )
+                {
+                    MessageBox.Show("Something went wrong while adding file");
+                }
+            }
         }
     }
 }

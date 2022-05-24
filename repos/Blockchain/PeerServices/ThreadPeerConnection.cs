@@ -29,15 +29,19 @@ namespace Blockchain
                 string port = mainForm.peerService.ConfigurPeer.Port.ToString();
                 string uri = mainForm.peerService.RegistrPeer.PeerUri;
 
-                mainForm.Invoke(mainForm.peerConnectDel, port, uri);
+                mainForm?.Invoke(mainForm.peerConnectDel, port, uri);
             });
 
         }
 
         public void ListUpdate()
         {
-            mainForm.Invoke(mainForm.listUpdateDel);
-
+           // try
+          //  {
+                mainForm?.Invoke(mainForm.listUpdateDel);
+          //  }catch
+         //   {
+          //  }
         }
     }
 }

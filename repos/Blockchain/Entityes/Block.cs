@@ -5,13 +5,17 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
+using Microsoft.Win32;
+using Blockchain.Extensions;
 
 namespace Blockchain
 {
     public enum BlockType
     {
         STR,
-        USER
+        USER,
+        FILE
     }
 
     [DataContract]
@@ -133,7 +137,34 @@ namespace Blockchain
 
                         break;
                 }
+                case BlockType.FILE:
+                    {
+                        string downloadDir = SystemPaths.GetDownloadFolderPath();
+                        string path = downloadDir + "\\TempFile" + Data.FileType;
+
+                        try
+                        {
+                            Data.Content.TryCreateFileFromBinary(path);
+
+                            ProcessStartInfo psi = new ProcessStartInfo();
+
+                            psi.FileName = path;
+                            Process p = new Process();
+                            p.StartInfo = psi;
+                            p.Start();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("File open error");
+                        }
+                        break;
+                    }
             }
+        }
+
+        public void DownLoadContentTo(string path)
+        {
+            Data.Content.TryCreateFileFromBinary(path + Data.FileType);
         }
     }
 }

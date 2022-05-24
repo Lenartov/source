@@ -11,13 +11,14 @@ namespace Blockchain
     {
         [DataMember] public string Content { get; private set; }
         [DataMember] public string Hash { get; private set; }
+        [DataMember] public string FileType { get; private set; }
 
         public Data() { }
 
-        public Data(string content)
+        public Data(string content, string fileType = "")
         {
             Content = content;
-
+            FileType = fileType;
             Hash = GetSummaryData().GetHash();
         }
 
