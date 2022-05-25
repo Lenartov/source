@@ -36,12 +36,12 @@ namespace Blockchain
 
         public void ListUpdate()
         {
-           // try
-          //  {
+            try
+            {
                 mainForm?.Invoke(mainForm.listUpdateDel);
-          //  }catch
-         //   {
-          //  }
+            }catch
+            {
+            }
         }
     }
 }

@@ -47,6 +47,7 @@ namespace Blockchain
             // 
             this.textBox2.Location = new System.Drawing.Point(44, 93);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(235, 20);
             this.textBox2.TabIndex = 1;
             // 
@@ -63,7 +64,7 @@ namespace Blockchain
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 26);
+            this.label1.Location = new System.Drawing.Point(131, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 6;
@@ -72,7 +73,7 @@ namespace Blockchain
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 77);
+            this.label2.Location = new System.Drawing.Point(133, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 7;

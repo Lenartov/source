@@ -152,6 +152,8 @@ namespace Blockchain
                             Process p = new Process();
                             p.StartInfo = psi;
                             p.Start();
+                           // p.EnableRaisingEvents = true;
+                           // p.Exited += P_Exited;
                         }
                         catch
                         {
@@ -159,6 +161,21 @@ namespace Blockchain
                         }
                         break;
                     }
+            }
+        }
+
+        private void P_Exited(object sender, EventArgs e)
+        {
+            string downloadDir = SystemPaths.GetDownloadFolderPath();
+            string path = downloadDir + "\\TempFile" + Data.FileType;
+
+            try
+            {
+                path.TryDeleteFile();
+            }
+            catch
+            {
+                MessageBox.Show("TempFile are not deleted\nPlease delete it manual in Downloads folder");
             }
         }
 

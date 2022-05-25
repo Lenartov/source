@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Epoche;
 
 namespace Blockchain
 {
@@ -23,6 +24,19 @@ namespace Blockchain
             string formattedHash = hash.Replace("-", "").ToLower();
 
             return formattedHash;
+        }
+
+        public static string GetHashKeccak(this string data)
+        {
+            return ByteArrayToString(Keccak256.ComputeHash(data));
+        }
+
+        private static string ByteArrayToString(byte[] ba)
+        {
+            StringBuilder hex = new StringBuilder(ba.Length * 2);
+            foreach (byte b in ba)
+                hex.AppendFormat("{0:x2}", b);
+            return hex.ToString();
         }
 
         public static List<Block> TryConvertToBlockList(this string data)
@@ -52,6 +66,11 @@ namespace Blockchain
         public static void TryCreateFileFromBinary(this string binaryStr, string path)
         {
             File.WriteAllBytes(path, Encoding.Default.GetBytes(binaryStr));
+        }
+
+        public static void TryDeleteFile(this string path)
+        {
+            File.Delete(path);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Blockchain
 {
     public partial class Login : Form
     {
+        public bool loginStatus = false;
         public string Username { get; private set; }
         public string Password { get; private set; }
 
@@ -29,7 +30,7 @@ namespace Blockchain
             {
                 return;
             }
-
+            loginStatus = true;
             Close();
         }
 
@@ -52,8 +53,10 @@ namespace Blockchain
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Hide();
             Registration reg = new Registration();
             reg.ShowDialog();
+            Show();
         }
     }
 }

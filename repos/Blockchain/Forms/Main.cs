@@ -33,6 +33,9 @@ namespace Blockchain
         
         public Form1()
         {
+            InitializeComponent(); 
+            login = new Login();
+
             listUpdateDel += () =>
             {
                 dataGridView1.DataSource = null;
@@ -48,9 +51,15 @@ namespace Blockchain
                 isPeerConected = true;
                 Chain = new Chain(peerService);
 
-
-                login = new Login();
+                Hide();
                 var res = login.ShowDialog();
+                Show();
+
+                if(!login.loginStatus)
+                {
+                    MessageBox.Show("You quit the login page");
+                    Close();
+                }
 
                 Chain.RequestChainInfo();
 
@@ -67,11 +76,18 @@ namespace Blockchain
 
                 loadKostyl.Start();
             };
-            InitializeComponent();
 
 
-            Thread PeeringThread = new Thread(new ThreadStart(ThreadConnect));
-            PeeringThread.Start();
+            try
+            {
+                Thread PeeringThread = new Thread(new ThreadStart(ThreadConnect));
+                PeeringThread.Start();
+            }
+            catch 
+            {
+                MessageBox.Show("Connection error");
+                Close();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
