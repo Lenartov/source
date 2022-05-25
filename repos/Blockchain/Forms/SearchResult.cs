@@ -26,14 +26,15 @@ namespace Blockchain.Forms
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button != MouseButtons.Right)
-                return;
+            //right click
+           // if (e.Button != MouseButtons.Right)
+            //    return;
 
             ContextMenu m = new ContextMenu();
 
             var mousePos = dataGridView1.PointToClient(Cursor.Position);
 
-            if (e.RowIndex < Blocks.Count)
+            if (e.RowIndex >= 0 && e.RowIndex < Blocks.Count)
             {
                 MenuItem copyHash = new MenuItem("Copy hash");
                 copyHash.Click += (s, elent) =>
