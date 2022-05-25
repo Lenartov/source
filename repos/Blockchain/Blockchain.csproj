@@ -78,13 +78,15 @@
     <Compile Include="Forms\Registration.Designer.cs">
       <DependentUpon>Registration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202205241952199_hyi.cs" />
-    <Compile Include="Migrations\202205241952199_hyi.designer.cs">
-      <DependentUpon>202205241952199_hyi.cs</DependentUpon>
+    <Compile Include="Forms\SearchResult.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Migrations\202205242001125_hy.cs" />
-    <Compile Include="Migrations\202205242001125_hy.designer.cs">
-      <DependentUpon>202205242001125_hy.cs</DependentUpon>
+    <Compile Include="Forms\SearchResult.Designer.cs">
+      <DependentUpon>SearchResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205251545338_In.cs" />
+    <Compile Include="Migrations\202205251545338_In.designer.cs">
+      <DependentUpon>202205251545338_In.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PeerServices\CurrentHost.cs" />
@@ -141,11 +143,11 @@
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205241952199_hyi.resx">
-      <DependentUpon>202205241952199_hyi.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SearchResult.resx">
+      <DependentUpon>SearchResult.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205242001125_hy.resx">
-      <DependentUpon>202205242001125_hy.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205251545338_In.resx">
+      <DependentUpon>202205251545338_In.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

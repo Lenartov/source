@@ -162,6 +162,16 @@ namespace Blockchain
             }
         }
 
+        public void CopyHashToBuffer()
+        {
+            Clipboard.SetText(Hash);
+        }
+
+        public void CopyLoginToBuffer()
+        {
+            Clipboard.SetText(User.Login);
+        }
+
         public void DownLoadContentTo(string path)
         {
             Data.Content.TryCreateFileFromBinary(path + Data.FileType);

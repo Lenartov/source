@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Blockchain.Forms;
 using FileShare;
 
 namespace Blockchain
@@ -111,12 +112,33 @@ namespace Blockchain
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            ContextMenu m = new ContextMenu();
 
+            if (e.Button != MouseButtons.Right)
+                return;
+
+            dataGridView1.ClearSelection();
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
+                dataGridView1.Rows[e.RowIndex].Selected = true;
+
+            ContextMenu m = new ContextMenu();
             var mousePos = dataGridView1.PointToClient(Cursor.Position);
 
             if (e.RowIndex < Chain.Blocks.Count)
             {
+                MenuItem copyHash = new MenuItem("Copy hash");
+                copyHash.Click += (s, elent) =>
+                {
+                    Chain.Blocks[e.RowIndex].CopyHashToBuffer();
+                };
+                m.MenuItems.Add(copyHash);
+
+                MenuItem copyLogin = new MenuItem("Copy login");
+                copyLogin.Click += (s, elent) =>
+                {
+                    Chain.Blocks[e.RowIndex].CopyLoginToBuffer();
+                };
+                m.MenuItems.Add(copyLogin);
+
                 MenuItem openFileItem = new MenuItem("Open block content");
                 openFileItem.Click += (s, elent) =>
                 {
@@ -173,6 +195,83 @@ namespace Blockchain
                     MessageBox.Show("Something went wrong while adding file");
                 }
             }
+        }
+
+
+        //search by block hash
+        private void button3_Click(object sender, EventArgs e)
+        {
+            List<Block> resBlockList = new List<Block>();
+            foreach (Block b in Chain.Blocks)
+            {
+                if(b.Hash == search.Text)
+                {
+                    resBlockList.Add(b);
+                }
+            }
+            ShowSearchResult(resBlockList);
+            search.Clear();
+        }
+
+        //search by username
+        private void button5_Click(object sender, EventArgs e)
+        {
+            List<Block> resBlockList = new List<Block>();
+            foreach (Block b in Chain.Blocks)
+            {
+                if (b.User.Login == search.Text)
+                {
+                    resBlockList.Add(b);
+                }
+            }
+            ShowSearchResult(resBlockList);
+            search.Clear();
+        }
+
+        private void ShowSearchResult(List<Block> blocks)
+        {
+            if(blocks.Count < 1)
+            {
+                MessageBox.Show("No results");
+                return;
+            }
+
+            SearchResult searchResultForm = new SearchResult(blocks);
+            searchResultForm.Show();
+        }
+
+        //copy username
+        private void UsernameView_Clicked(object sender, EventArgs e)
+        {
+            ContextMenu m = new ContextMenu();
+            Point mousePos = UsernameView.PointToClient(Cursor.Position);
+
+            MenuItem copyHash = new MenuItem("Copy username");
+            copyHash.Click += (s, elent) =>
+            {
+                Clipboard.SetText(login.Username);
+            };
+            m.MenuItems.Add(copyHash);
+
+            m.Show(UsernameView, mousePos);
+        }
+
+        private void search_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right)
+                return;
+
+            ContextMenu m = new ContextMenu();
+            Point mousePos = UsernameView.PointToClient(Cursor.Position);
+
+            MenuItem copyHash = new MenuItem("Past");
+            copyHash.Click += (s, elent) =>
+            {
+                search.Text = Clipboard.GetText();
+            };
+            m.MenuItems.Add(copyHash);
+
+            m.Show(UsernameView, mousePos);
         }
     }
 }
