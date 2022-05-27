@@ -15,7 +15,7 @@ namespace Blockchain
         static void Main()
         {
 
-              if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length <= 0)
+              if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length <= 1)
               {
                   var DBCS = ConfigurationManager.ConnectionStrings[1];
                   var writable = typeof(ConfigurationElement).GetField("_bReadOnly", BindingFlags.Instance | BindingFlags.NonPublic);

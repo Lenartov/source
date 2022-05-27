@@ -14,7 +14,7 @@ namespace FileShare
         void RequestBlocks(HostInfo sender, HostInfo reciver);
 
         [OperationContract(IsOneWay = true)]
-        void SendBlocks(HostInfo sender, HostInfo reciver, Block[] blocks);
+        void SendBlocks(HostInfo sender, HostInfo reciver, string blocksJson);
 
         [OperationContract(IsOneWay = true)]
         void RequestChainInfo(HostInfo sender);

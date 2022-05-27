@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FileShare;
+using Newtonsoft.Json;
 
 namespace Blockchain
 {
@@ -88,7 +89,7 @@ namespace Blockchain
 
         public void SendBlocks(HostInfo reciver)
         {
-            pingService.SendBlocks(CurrentHost.Instance.Info, reciver, Blocks.ToArray());
+            pingService.SendBlocks(CurrentHost.Instance.Info, reciver, JsonConvert.SerializeObject(Blocks));
         }
 
         public void SendChainInfo(HostInfo reciver)

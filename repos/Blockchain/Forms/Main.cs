@@ -71,6 +71,7 @@ namespace Blockchain
                 Thread loadKostyl = new Thread(() => 
                 {
                     Thread.Sleep(3000);
+                    Chain.RequestChainInfo();
                     ThreadListUpdate();
                 });
 

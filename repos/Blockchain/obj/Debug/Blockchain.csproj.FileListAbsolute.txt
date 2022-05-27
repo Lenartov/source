@@ -34,4 +34,4 @@ D:\Blockchain\source\repos\Blockchain\bin\Debug\Newtonsoft.Json.xml
 D:\Blockchain\source\repos\Blockchain\obj\Debug\Blockchain.Registration.resources
 D:\Blockchain\source\repos\Blockchain\obj\Debug\Blockchain.Forms.SearchResult.resources
 D:\Blockchain\source\repos\Blockchain\obj\Debug\Blockchain.Migrations.In.resources
-D:\Blockchain\source\repos\Blockchain\bin\Debug\MaterialSkin.dll
+D:\Blockchain\source\repos\Blockchain\bin\Debug\Epoche.Keccak256.dll

@@ -70,14 +70,15 @@ namespace FileShare
             Chain.Instance.SendBlocks(sender);
         }
 
-        public void SendBlocks(HostInfo sender, HostInfo reciver, Block[] blocks)
+        public void SendBlocks(HostInfo sender, HostInfo reciver, string blocksJson)
         {
-            if (CurrentHost.Instance.Info.Uri != reciver.Uri)
+            if (CurrentHost.Instance.Info.Uri == sender.Uri)
                 return;
 
+            List<Block> bs = JsonConvert.DeserializeObject<List<Block>>(blocksJson);
             SynchronizedCollection<Block> blockList = new SynchronizedCollection<Block>();
 
-            foreach (var b in blocks)
+            foreach (var b in bs)
                 blockList.Add(b);
 
             if (Chain.Instance.CompareBlocks(blockList))

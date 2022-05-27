@@ -1,0 +1,23 @@
+D:\Blockchain\source\repos\Doctoral accounting\obj\Debug\Doctoral accounting.csproj.AssemblyReference.cache
+D:\Blockchain\source\repos\Doctoral accounting\obj\Debug\Doctoral_accounting.Main.resources
+D:\Blockchain\source\repos\Doctoral accounting\obj\Debug\Doctoral_accounting.Properties.Resources.resources
+D:\Blockchain\source\repos\Doctoral accounting\obj\Debug\Doctoral accounting.csproj.GenerateResource.cache
+D:\Blockchain\source\repos\Doctoral accounting\obj\Debug\Doctoral accounting.csproj.CoreCompileInputs.cache
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\Doctoral accounting.exe.config
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\Doctoral accounting.exe
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\Doctoral accounting.pdb
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\Blockchain.exe
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\MaterialSkin.dll
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\Newtonsoft.Json.dll
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\EntityFramework.dll
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\Epoche.Keccak256.dll
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\Blockchain.pdb
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\Blockchain.exe.config
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\Newtonsoft.Json.xml
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\EntityFramework.xml
+D:\Blockchain\source\repos\Doctoral accounting\obj\Debug\Doctoral accounting.csproj.CopyComplete
+D:\Blockchain\source\repos\Doctoral accounting\obj\Debug\Doctoral accounting.exe
+D:\Blockchain\source\repos\Doctoral accounting\obj\Debug\Doctoral accounting.pdb
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\EntityFramework.SqlServer.dll
+D:\Blockchain\source\repos\Doctoral accounting\bin\Debug\EntityFramework.SqlServer.xml
+D:\Blockchain\source\repos\Doctoral accounting\obj\Debug\Doctoral_accounting.SelectViewForm.resources
