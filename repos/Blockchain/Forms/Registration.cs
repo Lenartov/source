@@ -51,7 +51,7 @@ namespace Blockchain
 
         private bool CheckUsername(string login)
         {
-            /* List<string> invalidChars = new List<string>() { "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-" };
+             List<string> invalidChars = new List<string>() { "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-" };
 
              if (login.Length < 8)
              {
@@ -75,7 +75,7 @@ namespace Blockchain
                      return false;
                  }
              }
-            */
+            
             return CheckForExistingLogin(login);
 
             return true;

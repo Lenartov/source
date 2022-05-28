@@ -155,6 +155,18 @@ namespace Doctoral_accounting
         {
             if (isPeerConected)
             {
+                if(string.IsNullOrEmpty(patientText.Text))
+                {
+                    MessageBox.Show("empty patient name");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(patientSurNameText.Text))
+                {
+                    MessageBox.Show("empty patient surname");
+                    return;
+                }
+
                 History history = new History(patientText.Text, patientSurNameText.Text, DateTime.Now, dateTimePicker1.Value, diagnosesText.Text, comentaryText.Text, analizesText.Text, treatmentText.Text);
                 histories.Add(history);
 

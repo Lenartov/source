@@ -91,6 +91,14 @@
     <Compile Include="Migrations\202205251545338_In.designer.cs">
       <DependentUpon>202205251545338_In.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205281625430_asd.cs" />
+    <Compile Include="Migrations\202205281625430_asd.designer.cs">
+      <DependentUpon>202205281625430_asd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205281628176_as.cs" />
+    <Compile Include="Migrations\202205281628176_as.designer.cs">
+      <DependentUpon>202205281628176_as.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PeerServices\CurrentHost.cs" />
     <Compile Include="PeerToPeer\Contracts\FileShareServices\IFileShareHostService.cs" />
@@ -151,6 +159,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205251545338_In.resx">
       <DependentUpon>202205251545338_In.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205281625430_asd.resx">
+      <DependentUpon>202205281625430_asd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205281628176_as.resx">
+      <DependentUpon>202205281628176_as.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

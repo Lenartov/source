@@ -193,10 +193,14 @@ namespace Blockchain
                 {
                     string content = path.ParseFileToBinary();
                     string extension = Path.GetExtension(path);
-
+                    
                     if(content == "")
                     {
                         MessageBox.Show("empty file");
+                    }
+                    else if(content.Length > 50000)
+                    {
+                        MessageBox.Show("size of file is too big");
                     }
 
                     User user = new User(login.Username, login.Password.GetHash(), UserRole.User);

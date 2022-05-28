@@ -33,7 +33,7 @@ namespace Blockchain
         {
             Id = 0;
             Created = DateTime.Parse("11.05.2022 00:00:00.000");
-            User = new User("Penis", "12345678987654321", UserRole.Admin);
+            User = new User("Admin", "12345678987654321", UserRole.Admin);
             Data = new Data("Genesis user admin block");
             BlockType = BlockType.USER;
 
